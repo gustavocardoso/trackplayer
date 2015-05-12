@@ -1,0 +1,53 @@
+.app-title {
+  letter-spacing: -2px;
+  color: #444;
+  margin-bottom: 40px;
+}
+
+.app-title a {
+  font-size: 38pt;
+  font-weight: bold;
+  letter-spacing: -5px;
+  color: #CA4449;
+  text-shadow: 2px 2px 2px rgba(0,0,0,0.1);
+}
+
+.track-list {
+  margin-top: 20px;
+}
+
+.btn-main {
+  margin-left: 112px;
+}
+
+.form-main {
+  margin: 40px 0;
+}
+
+.notice-error {
+  box-sizing: border-box;
+  border-radius: 4px;
+  padding: 10px;
+  margin-top: 30px;
+}
+
+.notice-error h2 {
+  font-size: 12pt;
+  margin: 10px 0 15px 5px;
+}
+
+.btn-edit {
+  margin-right: 10px;
+}
+
+.notice {
+  box-sizing: border-box;
+  font-weight: bold;
+  border-radius: 4px;
+  padding: 10px;
+  margin-bottom: 40px;
+}
+
+.filename {
+  font-weight: bold;
+}

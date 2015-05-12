@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Trackplayer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <%= stylesheet_link_tag "player", media: "all", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div class="container" role="main">
+    <section class="track-player power-off">
+      <div class="player-rack">
+        <div class="box-inner">
+          <div class="player-controls-container">
+            <div class="player-controls">
+              <div class="box-inner">
+                <div class="buttons-holder">
+                  <a href="#" class="control-button power"><i class="fa fa-power-off"></i></a>
+                  <a href="#" class="control-button play"><i class="fa fa-play"></i></a>
+                  <a href="#" class="control-button rewind"><i class="fa fa-fast-backward"></i></a>
+                </div>
+                <div class="elapsed-time-bar-holder">
+                  <canvas width="246" height="15" class="elapsed-time-bar"></canvas>
+                  <span class="elapsed-time-display elapsed-time">00:00</span>
+                  <span class="elapsed-time-display time-left">00:00</span>
+                </div>
+              </div>
+            </div>
+            <audio src="#" id="player" class="empty"></audio>
+          </div>
+
+          <div class="player-display">
+            <section class="song">
+              <h1 class="song-title">Title: <span class="song-title-display"></span></h1>
+              <p class="song-artist">Artist: <span class="song-artist-display"></span></p>
+              <div class="song-meta">
+                <p class="song-bpm"><i class="fa fa-music"></i> <span class="meta-container">Bpm: <span class="meta-text song-bpm-display">000</span></span></p>
+                <p class="song-duration"><i class="fa fa-clock-o"></i> <span class="meta-container">Duration: <span class="meta-text song-duration-display">00:00</span></span></p>
+                <p class="song-elapsed"><i class="fa fa-star-half-o"></i> <span class="meta-container">Timeleft: <span class="meta-text song-elapsed-display">00:00</span></span></p>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+      <%= yield %>
+    </section>
+  </div>
+  <%= javascript_include_tag "jquery-2.0.2.min", "player", "loader", "data-turbolinks-track" => true %>
+</body>
+</html>

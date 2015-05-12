@@ -1,0 +1,17 @@
+@function remove-unit($number) {
+  $unit: unit($number);
+  $one: 1;
+
+  @if $unit == "px" { $one: 1px; }
+  @if $unit == "em" { $one: 1em; }
+  @if $unit == "%" { $one: 1%; }
+
+  @return $number / $one;
+}
+
+@mixin fontSize($font-size, $context: 16px, $unit: "em") {
+  $size: remove-unit($font-size) / remove-unit($context);
+  @if $unit == "em" { font-size: #{$size}em; }
+  @if $unit == "px" { font-size: #{$size}px; }
+  @if $unit == "%" { font-size: percentage($size); }
+}

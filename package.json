@@ -1,0 +1,15 @@
+{
+  "name": "quatro-rodas-mobile",
+  "version": "0.0.1",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-jshint": "~0.1.1",
+    "grunt-contrib-nodeunit": "~0.1.2",
+    "grunt-contrib-sass": "~0.3.0",
+    "grunt-contrib-uglify": "~0.2.0",
+    "grunt-contrib-watch": "~0.3.1",
+    "grunt-image-embed": "~0.3.0",
+    "grunt-contrib-testem": "~0.5.14",
+    "grunt-contrib-compass": "~0.7.2"
+  }
+}

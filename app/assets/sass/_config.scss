@@ -1,0 +1,47 @@
+// SIZE DEFINITIONS
+$player-display-width: 100%;
+$player-controls-container-width: 285px;
+$player-rack-height: 200px;
+$tracks-height: 100%;
+
+// COLOR DEFINITIONS
+$main-color: #000;
+$main-font-color: #ccc;
+$power-on-color: #9c0;
+$power-off-color: rgba(204,0,51,0.7);
+$function-color: #fc3;
+$playing-color: #9c0;
+
+// TRACKS
+$active-music-color: #C03;
+$active-display-color: #C03;
+
+// BUTTONS
+$control-button-color: #222;
+
+// ELAPSED TIME BAR
+$elapsed-time-display-off: #333;
+$elapsed-time-display-on: #999;
+
+// BACKGROUNDS
+$main-background-color: #000;
+$container-background-color: #222;
+$tracks-container-background-color: #222;
+$active-display-background-color: rgba(0,0,0,0.2);
+
+// BACKGROUND IMAGES
+$main-background-image: url("/assets/images/bg-main.png");
+$player-off-background-image: url("/assets/images/bg-player-off.png");
+$player-on-background-image: url("/assets/images/bg-player-on.png");
+
+// BORDERS
+$box-border-outter: #000;
+$box-border-inner: #2b2b2b;
+$container-border-dark: #000;
+$container-border-light: #2b2b2b;
+
+// FONT DEFINITIONS
+// main-font; header-font;
+
+$main-font: 'Lato', sans-serif;
+$player-font: 'ds-digitalnormal';

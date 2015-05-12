@@ -1,0 +1,36 @@
+<section class="tracks">
+  <div class="box-inner">
+    <table class="tracks-table">
+      <thead>
+        <th></th>
+        <th>Title</th>
+        <th>Artist</th>
+        <th>Bpm</th>
+        <th>Duration</th>
+        <th>Observations</th>
+      </thead>
+      <tbody class="tracks-list">
+        <% @tracks.each do |track| %>
+          <tr>
+            <td class="action-icon"><i class="fa fa-play"></td>
+            <td>
+              <a href="#" class="track" data-title="<%= track.title %>" data-artist="<%= track.artist %>" data-bpm="<%= track.bpm %>" data-duration="<%= track.duration %>" data-filename="<%= track.file.url -%>"><%= track.title %></a>
+            </td>
+            <td>
+              <%= track.artist %>
+            </td>
+            <td>
+              <%= track.bpm %>
+            </td>
+            <td>
+              <%= track.duration %>
+            </td>
+            <td>
+              <%= track.observations %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</section>
