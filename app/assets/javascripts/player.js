@@ -22,6 +22,7 @@
     this.tracks              = this.trackPlayer.querySelectorAll('.track');
     this.playing             = false;
     this.context             = this.bar.getContext('2d');
+    this.keys                = {48: 10, 49: 1, 50: 2, 51: 3, 52: 4, 53: 5, 54: 6, 55: 7, 56: 8, 57: 9};
   };
 
   Player.prototype = {
@@ -67,7 +68,7 @@
         obj.tracks[i].addEventListener('click', function(e) {
           e.preventDefault();
           obj.unsetTrack(obj);
-          obj.setTrack(e, obj);
+          obj.setTrack(e.target, obj);
         }, false);
       }
 
@@ -92,14 +93,10 @@
 
       document.addEventListener('keyup', function(e) {
         e.preventDefault();
+        
+        var key = e.keyCode;
 
-        console.log(e.keyCode);
-
-        if(e.keyCode == 80) {
-
-        }
-
-        if(e.keyCode == 32) {
+        if(key == 32) {
           if(!obj.player.classList.contains('empty')) {
             if(!obj.playing) {
               obj.playTrack(obj);
@@ -108,6 +105,15 @@
               obj.stopTrack(obj);
               obj.playing = false;
             }
+          }
+        }
+
+        if(/^4[89]|5\d$/.test(key)) {
+          var trackId = obj.keys[key];
+          var track = document.querySelector('a[data-id="'+ trackId +'"]');
+          if(track != null) {
+            obj.unsetTrack(obj);
+            obj.setTrack(track, obj);
           }
         }
       }, false);
@@ -133,31 +139,28 @@
 
     },
 
-    setTrack: function(event, obj) {
+    setTrack: function(track, obj) {
 
       console.log('Set track!');
 
-      if(event.target.tagName == 'A') {
+      var info = track.dataset;
 
-        var info = event.target.dataset;
+      obj.player.pause();
+      
+      obj.songTitleDisplay.innerHTML = info.title;
+      obj.songArtistDisplay.innerHTML = info.artist;            
+      obj.songBpmDisplay.innerHTML = info.bpm;
+      obj.songDurationDisplay.innerHTML = info.duration;
+      obj.songElapsedDisplay.innerHTML = "00:00";
+      obj.barTimeLeft.innerHTML = "00:00";
+      
+      obj.playButton.classList.remove('playing');
+      obj.playButtonIcon.classList.add('fa-play');
+      obj.playButtonIcon.classList.remove('fa-stop');
+      obj.playing = false;
 
-        obj.player.pause();
-        
-        obj.songTitleDisplay.innerHTML = info.title;
-        obj.songArtistDisplay.innerHTML = info.artist;            
-        obj.songBpmDisplay.innerHTML = info.bpm;
-        obj.songDurationDisplay.innerHTML = info.duration;
-        obj.songElapsedDisplay.innerHTML = "00:00";
-        obj.barTimeLeft.innerHTML = "00:00";
-        
-        obj.playButton.classList.remove('playing');
-        obj.playButtonIcon.classList.add('fa-play');
-        obj.playButtonIcon.classList.remove('fa-stop');
-        obj.playing = false;
-
-        obj.player.src = info.filename;
-        obj.player.classList.remove('empty');
-      }
+      obj.player.src = info.filename;
+      obj.player.classList.remove('empty');
 
     },
 

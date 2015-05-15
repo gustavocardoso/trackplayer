@@ -10,11 +10,11 @@
         <th>Observations</th>
       </thead>
       <tbody class="tracks-list">
-        <% @tracks.each do |track| %>
+        <% @tracks.each_with_index do |track, index| %>
           <tr>
-            <td class="action-icon"><i class="fa fa-play"></td>
+            <td class="action-icon"><%= index + 1 %></td>
             <td>
-              <a href="#" class="track" data-title="<%= track.title %>" data-artist="<%= track.artist %>" data-bpm="<%= track.bpm %>" data-duration="<%= track.duration %>" data-filename="<%= track.file.url -%>"><%= track.title %></a>
+              <a href="#" class="track" data-id="<%= index + 1 %>" data-title="<%= track.title %>" data-artist="<%= track.artist %>" data-bpm="<%= track.bpm %>" data-duration="<%= track.duration %>" data-filename="<%= track.file.url -%>"><%= track.title %></a>
             </td>
             <td>
               <%= track.artist %>
