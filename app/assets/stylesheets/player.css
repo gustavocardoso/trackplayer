@@ -2949,12 +2949,38 @@ body:after {
   background: #191919;
 }
 
-/* line 252, ../sass/_base.scss */
+@keyframes blink {
+  /* line 253, ../sass/_base.scss */
+  0% {
+    opacity: 0;
+  }
+
+  /* line 256, ../sass/_base.scss */
+  50% {
+    opacity: 0.5;
+  }
+
+  /* line 259, ../sass/_base.scss */
+  100% {
+    opacity: 1;
+  }
+}
+
+/* line 264, ../sass/_base.scss */
+.animate-blink {
+  animation-duration: 0.1s;
+  animation-delay: 0.1s;
+  animation-name: blink;
+  animation-timing-function: ease;
+  animation-fill-mode: backwards;
+}
+
+/* line 272, ../sass/_base.scss */
 .song {
   color: #222;
   padding: 5px 10px;
 }
-/* line 257, ../sass/_base.scss */
+/* line 277, ../sass/_base.scss */
 .song .song-title {
   font-size: 2.625em;
   font-weight: normal;
@@ -2962,42 +2988,42 @@ body:after {
   margin: 0;
   padding: 0;
 }
-/* line 265, ../sass/_base.scss */
+/* line 285, ../sass/_base.scss */
 .song .song-artist {
   font-size: 2.125em;
   line-height: 1.4em;
   margin: 0 0 0 0;
   padding: 0;
 }
-/* line 272, ../sass/_base.scss */
+/* line 292, ../sass/_base.scss */
 .song .song-meta {
   font-size: 2.5em;
   line-height: 1.4em;
 }
-/* line 276, ../sass/_base.scss */
+/* line 296, ../sass/_base.scss */
 .song .song-meta .song-bpm, .song .song-meta .song-duration, .song .song-meta .song-elapsed {
   display: inline-block;
   float: left;
   margin: 0 20px 0 0;
   padding: 0;
 }
-/* line 282, ../sass/_base.scss */
+/* line 302, ../sass/_base.scss */
 .song .song-meta .song-bpm .meta-container, .song .song-meta .song-duration .meta-container, .song .song-meta .song-elapsed .meta-container {
   display: inline-block;
   float: left;
 }
-/* line 288, ../sass/_base.scss */
+/* line 308, ../sass/_base.scss */
 .song .song-meta .song-bpm {
   width: 160px;
 }
-/* line 293, ../sass/_base.scss */
+/* line 313, ../sass/_base.scss */
 .song .fa {
   display: inline-block;
   font-size: 0.5em;
   float: left;
   margin: 18px 5px 0 0;
 }
-/* line 300, ../sass/_base.scss */
+/* line 320, ../sass/_base.scss */
 .song .song-elapsed .fa {
   margin: 22px 5px 0 0;
 }

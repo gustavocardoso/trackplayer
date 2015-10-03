@@ -8,6 +8,7 @@
     this.playButtonIcon      = this.playButton.querySelector('.fa');
     this.rewindButton        = this.trackPlayer.querySelector('.rewind');
     this.tracksContainer     = this.trackPlayer.querySelector('.tracks-list');
+    this.playerDisplay       = this.trackPlayer.querySelector('.player-display');
     this.songTitleDisplay    = this.trackPlayer.querySelector('.song-title-display');
     this.songArtistDisplay   = this.trackPlayer.querySelector('.song-artist-display');
     this.songDurationDisplay = this.trackPlayer.querySelector('.song-duration-display');
@@ -109,11 +110,16 @@
         }
 
         if(/^4[89]|5\d$/.test(key)) {
-          var trackId = obj.keys[key];
-          var track = document.querySelector('a[data-id="'+ trackId +'"]');
-          if(track != null) {
+          if(obj.trackPlayer.classList.contains("power-on")) {
+            var trackId = obj.keys[key];
+            var track = document.querySelector('a[data-id="'+ trackId +'"]') || null;
+            
             obj.unsetTrack(obj);
-            obj.setTrack(track, obj);
+
+            if(track != null) {
+              console.log('entrou');
+              obj.setTrack(track, obj);
+            }
           }
         }
       }, false);
@@ -148,7 +154,8 @@
       obj.player.pause();
       
       obj.songTitleDisplay.innerHTML = info.title;
-      obj.songArtistDisplay.innerHTML = info.artist;            
+      obj.playerDisplay.classList.add('animate-blink');
+      obj.songArtistDisplay.innerHTML = info.artist;
       obj.songBpmDisplay.innerHTML = info.bpm;
       obj.songDurationDisplay.innerHTML = info.duration;
       obj.songElapsedDisplay.innerHTML = "00:00";
@@ -170,12 +177,15 @@
 
       obj.player.src = '';
       obj.player.classList.add('empty');
-
       obj.songTitleDisplay.innerHTML = '';
+      console.log(obj.songTitleDisplay.classList);
+      console.log(obj.songTitleDisplay.classList);
+      console.log(obj.songTitleDisplay.classList);
       obj.songArtistDisplay.innerHTML = '';
       obj.songDurationDisplay.innerHTML = '00:00';
       obj.songBpmDisplay.innerHTML = '000';
       obj.songElapsedDisplay.innerHTML = '00:00';
+      obj.playerDisplay.classList.remove('animate-blink');
 
     },
 
