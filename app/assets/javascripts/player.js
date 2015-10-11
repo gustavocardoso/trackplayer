@@ -21,7 +21,6 @@
     this.barTimeLeft         = this.barHolder.querySelector('.time-left');
     this.tracksTable         = this.trackPlayer.querySelectorAll('.tracks-table');
     this.tracks              = this.trackPlayer.querySelectorAll('.track');
-    this.playing             = false;
     this.context             = this.bar.getContext('2d');
     this.keys                = {48: 10, 49: 1, 50: 2, 51: 3, 52: 4, 53: 5, 54: 6, 55: 7, 56: 8, 57: 9};
   };
@@ -74,6 +73,7 @@
       }
 
       obj.playButton.addEventListener('click', function(e) {
+        console.log('clicou no play');
         e.preventDefault();
         obj.trackControl(e, obj);
       }, false);
@@ -99,12 +99,10 @@
 
         if(key == 32) {
           if(!obj.player.classList.contains('empty')) {
-            if(!obj.playing) {
+            if(obj.player.paused) {
               obj.playTrack(obj);
-              obj.playing = true;
             }else {
               obj.stopTrack(obj);
-              obj.playing = false;
             }
           }
         }
@@ -164,7 +162,6 @@
       obj.playButton.classList.remove('playing');
       obj.playButtonIcon.classList.add('fa-play');
       obj.playButtonIcon.classList.remove('fa-stop');
-      obj.playing = false;
 
       obj.player.src = info.filename;
       obj.player.classList.remove('empty');
@@ -194,7 +191,7 @@
       console.log('Track control!');
 
       if(!obj.player.classList.contains('empty')) {
-        if(!obj.playing) {
+        if(obj.player.paused) {
           obj.playTrack(obj);
         }else {
           obj.stopTrack(obj);
@@ -210,7 +207,6 @@
       obj.playButton.classList.add('playing');
       obj.playButtonIcon.classList.remove('fa-play');
       obj.playButtonIcon.classList.add('fa-stop');
-      obj.playing = true;
 
     },
 
@@ -221,7 +217,6 @@
       obj.playButton.classList.remove('playing');
       obj.playButtonIcon.classList.add('fa-play');
       obj.playButtonIcon.classList.remove('fa-stop');
-      obj.playing = false;
 
     },
 
@@ -240,7 +235,6 @@
         obj.playButton.classList.remove('playing');
         obj.playButtonIcon.classList.add('fa-play');
         obj.playButtonIcon.classList.remove('fa-stop');
-        obj.playing = false;
       
     },
 
