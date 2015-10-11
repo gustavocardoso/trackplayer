@@ -97,6 +97,14 @@
         
         var key = e.keyCode;
 
+        if(key == 38) {
+          obj.volumeUp(obj);
+        }
+
+        if(key == 40) {
+          obj.volumeDown(obj);
+        }
+
         if(key == 32) {
           if(!obj.player.classList.contains('empty')) {
             if(obj.player.paused) {
@@ -272,6 +280,22 @@
 
     setVolume: function(obj) {
       obj.player.volume = obj.volumeSlider.value / 100;
+    },
+
+    volumeUp: function(obj) {
+      if(obj.volumeSlider.value < 100) {
+        var originalVolume = parseInt(obj.volumeSlider.value);
+        obj.volumeSlider.value = originalVolume + 1;
+        obj.setVolume(obj);
+      }
+    },
+
+    volumeDown: function(obj) {
+      if(obj.volumeSlider.value > 0) {
+        var originalVolume = parseInt(obj.volumeSlider.value);
+        obj.volumeSlider.value = originalVolume - 1;
+        obj.setVolume(obj);
+      }
     }
   }
 
