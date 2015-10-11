@@ -22,6 +22,7 @@
     this.tracksTable         = this.trackPlayer.querySelectorAll('.tracks-table');
     this.tracks              = this.trackPlayer.querySelectorAll('.track');
     this.context             = this.bar.getContext('2d');
+    this.volumeSlider        = this.trackPlayer.querySelector('.volume-slider');
     this.keys                = {48: 10, 49: 1, 50: 2, 51: 3, 52: 4, 53: 5, 54: 6, 55: 7, 56: 8, 57: 9};
   };
 
@@ -62,6 +63,8 @@
       obj.trackPlayer.classList.remove('power-off');
       obj.trackPlayer.classList.add("power-on");
 
+      obj.volumeSlider.value = 75;
+
       $(obj.tracksTable).show();
 
       for(var i = 0; i < obj.tracks.length; i++) {
@@ -90,6 +93,10 @@
       obj.player.addEventListener('timeupdate', function(e) {
         obj.setElapsedTime(obj);
         obj.setElapsedTimeBar(obj, '#ccc', false);
+      }, false);
+
+      obj.volumeSlider.addEventListener('input', function(e) {
+        obj.setVolume(obj);
       }, false);
 
       document.addEventListener('keyup', function(e) {
@@ -129,6 +136,8 @@
       console.log('Power off!');
       obj.trackPlayer.classList.remove('power-on');
       obj.trackPlayer.classList.add('power-off');
+
+      obj.volumeSlider.value = 0;
       
       obj.player.pause();
       obj.trackPlayer.classList.remove("power-on");
@@ -281,6 +290,10 @@
 
     unsetBar: function(obj) {
       obj.context.clearRect(0, 0, 245, 15);
+    },
+
+    setVolume: function(obj) {
+      obj.player.volume = obj.volumeSlider.value / 100;
     }
   }
 
