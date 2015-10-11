@@ -29,8 +29,6 @@
   Player.prototype = {
 
     start: function() {
-
-      console.log('Start!');
       
       var obj = this;
 
@@ -45,8 +43,6 @@
     },
 
     power: function(obj) {
-      
-      console.log('Power!');
 
       if(obj.trackPlayer.classList.contains("power-off")) {
         this.powerOn(obj);
@@ -57,8 +53,6 @@
     },
 
     powerOn: function(obj) {
-
-      console.log('Power on!');
 
       obj.trackPlayer.classList.remove('power-off');
       obj.trackPlayer.classList.add("power-on");
@@ -76,7 +70,6 @@
       }
 
       obj.playButton.addEventListener('click', function(e) {
-        console.log('clicou no play');
         e.preventDefault();
         obj.trackControl(e, obj);
       }, false);
@@ -122,7 +115,6 @@
             obj.unsetTrack(obj);
 
             if(track != null) {
-              console.log('entrou');
               obj.setTrack(track, obj);
             }
           }
@@ -133,7 +125,6 @@
 
     powerOff: function(obj) {
 
-      console.log('Power off!');
       obj.trackPlayer.classList.remove('power-on');
       obj.trackPlayer.classList.add('power-off');
 
@@ -153,8 +144,6 @@
     },
 
     setTrack: function(track, obj) {
-
-      console.log('Set track!');
 
       var info = track.dataset;
 
@@ -179,14 +168,9 @@
 
     unsetTrack: function(obj) {
 
-      console.log('Unset track!');
-
       obj.player.src = '';
       obj.player.classList.add('empty');
       obj.songTitleDisplay.innerHTML = '';
-      console.log(obj.songTitleDisplay.classList);
-      console.log(obj.songTitleDisplay.classList);
-      console.log(obj.songTitleDisplay.classList);
       obj.songArtistDisplay.innerHTML = '';
       obj.songDurationDisplay.innerHTML = '00:00';
       obj.songBpmDisplay.innerHTML = '000';
@@ -196,8 +180,6 @@
     },
 
     trackControl: function(event, obj) {
-
-      console.log('Track control!');
 
       if(!obj.player.classList.contains('empty')) {
         if(obj.player.paused) {
@@ -211,7 +193,6 @@
 
     playTrack: function(obj) {
       
-      console.log('Play!'); 
       obj.player.play();
       obj.playButton.classList.add('playing');
       obj.playButtonIcon.classList.remove('fa-play');
@@ -221,7 +202,6 @@
 
     stopTrack: function(obj) {
 
-      console.log('Stop!');
       obj.player.pause();
       obj.playButton.classList.remove('playing');
       obj.playButtonIcon.classList.add('fa-play');
@@ -248,7 +228,6 @@
     },
 
     setElapsedTime: function(obj) {
-      console.log('Set elapsed time!');
 
       var songDuration = parseInt(obj.player.duration);
       var songCurrentTime = parseInt(obj.player.currentTime);
@@ -274,7 +253,6 @@
     },
 
     setElapsedTimeBar: function(obj, color, load, width) {
-      console.log('Set bar!');
 
       var width = width || 0;
 
