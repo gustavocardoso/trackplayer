@@ -2854,7 +2854,56 @@ body:after {
 .track-player .player-controls .elapsed-time-bar-holder .elapsed-time-display.time-left {
   right: 8px;
 }
-/* line 139, ../sass/_base.scss */
+/* line 138, ../sass/_base.scss */
+.track-player .player-controls .volume-slider-holder {
+  margin-top: 10px;
+}
+/* line 141, ../sass/_base.scss */
+.track-player .player-controls .volume-slider-holder .fa {
+  color: #333333;
+  margin: -1px 10px 0 7px;
+  float: left;
+}
+/* line 147, ../sass/_base.scss */
+.track-player .player-controls .volume-slider-holder input[type='range'] {
+  -webkit-appearance: none !important;
+  width: 230px;
+  height: 13px;
+  background: #222222;
+  border-bottom: #222 1px solid;
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  float: left;
+}
+/* line 159, ../sass/_base.scss */
+.track-player .player-controls .volume-slider-holder input[type='range']::-moz-range-track {
+  border: none;
+  background: #222222;
+  outline: none;
+}
+/* line 165, ../sass/_base.scss */
+.track-player .player-controls .volume-slider-holder input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none !important;
+  width: 15px;
+  height: 22px;
+  background: #222222;
+  border-radius: 5px;
+  border: 1px solid #222222;
+  cursor: pointer;
+  outline: none;
+}
+/* line 176, ../sass/_base.scss */
+.track-player .player-controls .volume-slider-holder input[type='range']::-moz-range-thumb {
+  width: 15px;
+  height: 24px;
+  background: #222222;
+  border-radius: 5px;
+  border: 1px solid #222222;
+  cursor: pointer;
+  outline: none;
+}
+/* line 188, ../sass/_base.scss */
 .track-player .player-display {
   width: calc(100% - 285px);
   height: 100%;
@@ -2867,55 +2916,79 @@ body:after {
   padding: 8px;
   float: right;
 }
-/* line 153, ../sass/_base.scss */
+/* line 202, ../sass/_base.scss */
 .track-player.power-on .control-button {
   color: #bbb;
 }
-/* line 158, ../sass/_base.scss */
+/* line 207, ../sass/_base.scss */
 .track-player.power-on .control-button.power {
   color: #99cc00;
 }
-/* line 165, ../sass/_base.scss */
+/* line 214, ../sass/_base.scss */
 .track-player.power-on .player-controls .elapsed-time-display {
   color: #999999;
 }
-/* line 170, ../sass/_base.scss */
+/* line 219, ../sass/_base.scss */
+.track-player.power-on .player-controls .volume-slider-holder .fa {
+  color: #999999;
+}
+/* line 223, ../sass/_base.scss */
+.track-player.power-on .player-controls .volume-slider-holder input[type='range'] {
+  background: black;
+}
+/* line 227, ../sass/_base.scss */
+.track-player.power-on .player-controls .volume-slider-holder input[type='range']::-moz-range-track {
+  background: black;
+}
+/* line 231, ../sass/_base.scss */
+.track-player.power-on .player-controls .volume-slider-holder input[type='range']::-webkit-slider-thumb {
+  background: #444444;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+  border: 1px solid #111111;
+}
+/* line 237, ../sass/_base.scss */
+.track-player.power-on .player-controls .volume-slider-holder input[type='range']::-moz-range-thumb {
+  background: #444444;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+  border: 1px solid #111111;
+}
+/* line 245, ../sass/_base.scss */
 .track-player.power-on .player-display {
   background: url("/assets/images/bg-player-on.png");
 }
-/* line 175, ../sass/_base.scss */
+/* line 250, ../sass/_base.scss */
 .track-player.power-on .player-display .song-elapsed .song-elapsed-display {
   font-size: 1.25em;
   font-weight: bold;
 }
-/* line 183, ../sass/_base.scss */
+/* line 258, ../sass/_base.scss */
 .track-player.power-on .song .song-title, .track-player.power-on .song .song-artist, .track-player.power-on .song .song-meta {
   color: #fff;
   text-shadow: 0px 0px 2px rgba(250, 250, 250, 0.5);
 }
-/* line 190, ../sass/_base.scss */
+/* line 265, ../sass/_base.scss */
 .track-player .tracks {
   height: calc(100% - (200px + 15px));
   width: 100%;
   background: #222222;
   overflow: auto;
 }
-/* line 198, ../sass/_base.scss */
+/* line 273, ../sass/_base.scss */
 .track-player .tracks .tracks-inner {
   height: 100%;
 }
 
-/* line 206, ../sass/_base.scss */
+/* line 281, ../sass/_base.scss */
 .tracks-table {
   display: none;
   width: 100%;
   background: #000;
 }
-/* line 212, ../sass/_base.scss */
+/* line 287, ../sass/_base.scss */
 .tracks-table thead {
   background: #333;
 }
-/* line 215, ../sass/_base.scss */
+/* line 290, ../sass/_base.scss */
 .tracks-table thead th {
   font-weight: 400;
   text-align: left;
@@ -2924,49 +2997,49 @@ body:after {
   text-shadow: 1px 1px 1px black;
   padding: 10px;
 }
-/* line 225, ../sass/_base.scss */
+/* line 300, ../sass/_base.scss */
 .tracks-table td {
   text-shadow: 1px 1px 1px black;
   padding: 10px;
 }
-/* line 229, ../sass/_base.scss */
+/* line 304, ../sass/_base.scss */
 .tracks-table td.action-icon {
   width: 10px;
   padding-left: 15px;
 }
-/* line 234, ../sass/_base.scss */
+/* line 309, ../sass/_base.scss */
 .tracks-table td a {
   display: block;
   text-decoration: none;
   color: #cccccc;
 }
-/* line 239, ../sass/_base.scss */
+/* line 314, ../sass/_base.scss */
 .tracks-table td a:hover {
   color: #cc0033;
 }
-/* line 246, ../sass/_base.scss */
+/* line 321, ../sass/_base.scss */
 .tracks-table tr:nth-child(even) {
   background: #191919;
 }
 
 @keyframes blink {
-  /* line 253, ../sass/_base.scss */
+  /* line 328, ../sass/_base.scss */
   0% {
     opacity: 0;
   }
 
-  /* line 256, ../sass/_base.scss */
+  /* line 331, ../sass/_base.scss */
   50% {
     opacity: 0.5;
   }
 
-  /* line 259, ../sass/_base.scss */
+  /* line 334, ../sass/_base.scss */
   100% {
     opacity: 1;
   }
 }
 
-/* line 264, ../sass/_base.scss */
+/* line 339, ../sass/_base.scss */
 .animate-blink {
   animation-duration: 0.1s;
   animation-delay: 0.1s;
@@ -2975,12 +3048,12 @@ body:after {
   animation-fill-mode: backwards;
 }
 
-/* line 272, ../sass/_base.scss */
+/* line 347, ../sass/_base.scss */
 .song {
   color: #222;
   padding: 5px 10px;
 }
-/* line 277, ../sass/_base.scss */
+/* line 352, ../sass/_base.scss */
 .song .song-title {
   font-size: 2.625em;
   font-weight: normal;
@@ -2988,42 +3061,42 @@ body:after {
   margin: 0;
   padding: 0;
 }
-/* line 285, ../sass/_base.scss */
+/* line 360, ../sass/_base.scss */
 .song .song-artist {
   font-size: 2.125em;
   line-height: 1.4em;
   margin: 0 0 0 0;
   padding: 0;
 }
-/* line 292, ../sass/_base.scss */
+/* line 367, ../sass/_base.scss */
 .song .song-meta {
   font-size: 2.5em;
   line-height: 1.4em;
 }
-/* line 296, ../sass/_base.scss */
+/* line 371, ../sass/_base.scss */
 .song .song-meta .song-bpm, .song .song-meta .song-duration, .song .song-meta .song-elapsed {
   display: inline-block;
   float: left;
   margin: 0 20px 0 0;
   padding: 0;
 }
-/* line 302, ../sass/_base.scss */
+/* line 377, ../sass/_base.scss */
 .song .song-meta .song-bpm .meta-container, .song .song-meta .song-duration .meta-container, .song .song-meta .song-elapsed .meta-container {
   display: inline-block;
   float: left;
 }
-/* line 308, ../sass/_base.scss */
+/* line 383, ../sass/_base.scss */
 .song .song-meta .song-bpm {
   width: 160px;
 }
-/* line 313, ../sass/_base.scss */
+/* line 388, ../sass/_base.scss */
 .song .fa {
   display: inline-block;
   font-size: 0.5em;
   float: left;
   margin: 18px 5px 0 0;
 }
-/* line 320, ../sass/_base.scss */
+/* line 395, ../sass/_base.scss */
 .song .song-elapsed .fa {
   margin: 22px 5px 0 0;
 }

@@ -21,16 +21,14 @@
     this.barTimeLeft         = this.barHolder.querySelector('.time-left');
     this.tracksTable         = this.trackPlayer.querySelectorAll('.tracks-table');
     this.tracks              = this.trackPlayer.querySelectorAll('.track');
-    this.playing             = false;
     this.context             = this.bar.getContext('2d');
+    this.volumeSlider        = this.trackPlayer.querySelector('.volume-slider');
     this.keys                = {48: 10, 49: 1, 50: 2, 51: 3, 52: 4, 53: 5, 54: 6, 55: 7, 56: 8, 57: 9};
   };
 
   Player.prototype = {
 
     start: function() {
-
-      console.log('Start!');
       
       var obj = this;
 
@@ -45,8 +43,6 @@
     },
 
     power: function(obj) {
-      
-      console.log('Power!');
 
       if(obj.trackPlayer.classList.contains("power-off")) {
         this.powerOn(obj);
@@ -58,10 +54,10 @@
 
     powerOn: function(obj) {
 
-      console.log('Power on!');
-
       obj.trackPlayer.classList.remove('power-off');
       obj.trackPlayer.classList.add("power-on");
+
+      obj.volumeSlider.value = 75;
 
       $(obj.tracksTable).show();
 
@@ -92,19 +88,29 @@
         obj.setElapsedTimeBar(obj, '#ccc', false);
       }, false);
 
+      obj.volumeSlider.addEventListener('input', function(e) {
+        obj.setVolume(obj);
+      }, false);
+
       document.addEventListener('keyup', function(e) {
         e.preventDefault();
         
         var key = e.keyCode;
 
+        if(key == 38) {
+          obj.volumeUp(obj);
+        }
+
+        if(key == 40) {
+          obj.volumeDown(obj);
+        }
+
         if(key == 32) {
           if(!obj.player.classList.contains('empty')) {
-            if(!obj.playing) {
+            if(obj.player.paused) {
               obj.playTrack(obj);
-              obj.playing = true;
             }else {
               obj.stopTrack(obj);
-              obj.playing = false;
             }
           }
         }
@@ -117,7 +123,6 @@
             obj.unsetTrack(obj);
 
             if(track != null) {
-              console.log('entrou');
               obj.setTrack(track, obj);
             }
           }
@@ -128,9 +133,10 @@
 
     powerOff: function(obj) {
 
-      console.log('Power off!');
       obj.trackPlayer.classList.remove('power-on');
       obj.trackPlayer.classList.add('power-off');
+
+      obj.volumeSlider.value = 0;
       
       obj.player.pause();
       obj.trackPlayer.classList.remove("power-on");
@@ -147,8 +153,6 @@
 
     setTrack: function(track, obj) {
 
-      console.log('Set track!');
-
       var info = track.dataset;
 
       obj.player.pause();
@@ -164,7 +168,6 @@
       obj.playButton.classList.remove('playing');
       obj.playButtonIcon.classList.add('fa-play');
       obj.playButtonIcon.classList.remove('fa-stop');
-      obj.playing = false;
 
       obj.player.src = info.filename;
       obj.player.classList.remove('empty');
@@ -173,14 +176,9 @@
 
     unsetTrack: function(obj) {
 
-      console.log('Unset track!');
-
       obj.player.src = '';
       obj.player.classList.add('empty');
       obj.songTitleDisplay.innerHTML = '';
-      console.log(obj.songTitleDisplay.classList);
-      console.log(obj.songTitleDisplay.classList);
-      console.log(obj.songTitleDisplay.classList);
       obj.songArtistDisplay.innerHTML = '';
       obj.songDurationDisplay.innerHTML = '00:00';
       obj.songBpmDisplay.innerHTML = '000';
@@ -191,10 +189,8 @@
 
     trackControl: function(event, obj) {
 
-      console.log('Track control!');
-
       if(!obj.player.classList.contains('empty')) {
-        if(!obj.playing) {
+        if(obj.player.paused) {
           obj.playTrack(obj);
         }else {
           obj.stopTrack(obj);
@@ -205,23 +201,19 @@
 
     playTrack: function(obj) {
       
-      console.log('Play!'); 
       obj.player.play();
       obj.playButton.classList.add('playing');
       obj.playButtonIcon.classList.remove('fa-play');
       obj.playButtonIcon.classList.add('fa-stop');
-      obj.playing = true;
 
     },
 
     stopTrack: function(obj) {
 
-      console.log('Stop!');
       obj.player.pause();
       obj.playButton.classList.remove('playing');
       obj.playButtonIcon.classList.add('fa-play');
       obj.playButtonIcon.classList.remove('fa-stop');
-      obj.playing = false;
 
     },
 
@@ -240,12 +232,10 @@
         obj.playButton.classList.remove('playing');
         obj.playButtonIcon.classList.add('fa-play');
         obj.playButtonIcon.classList.remove('fa-stop');
-        obj.playing = false;
       
     },
 
     setElapsedTime: function(obj) {
-      console.log('Set elapsed time!');
 
       var songDuration = parseInt(obj.player.duration);
       var songCurrentTime = parseInt(obj.player.currentTime);
@@ -271,7 +261,6 @@
     },
 
     setElapsedTimeBar: function(obj, color, load, width) {
-      console.log('Set bar!');
 
       var width = width || 0;
 
@@ -287,6 +276,26 @@
 
     unsetBar: function(obj) {
       obj.context.clearRect(0, 0, 245, 15);
+    },
+
+    setVolume: function(obj) {
+      obj.player.volume = obj.volumeSlider.value / 100;
+    },
+
+    volumeUp: function(obj) {
+      if(obj.volumeSlider.value < 100) {
+        var originalVolume = parseInt(obj.volumeSlider.value);
+        obj.volumeSlider.value = originalVolume + 1;
+        obj.setVolume(obj);
+      }
+    },
+
+    volumeDown: function(obj) {
+      if(obj.volumeSlider.value > 0) {
+        var originalVolume = parseInt(obj.volumeSlider.value);
+        obj.volumeSlider.value = originalVolume - 1;
+        obj.setVolume(obj);
+      }
     }
   }
 
