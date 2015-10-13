@@ -57,7 +57,7 @@
       obj.trackPlayer.classList.remove('power-off');
       obj.trackPlayer.classList.add("power-on");
 
-      obj.volumeSlider.value = 75;
+      obj.volumeSlider.value = 50;
       obj.tracksTable.classList.add('show');
 
       for(var i = 0; i < obj.tracks.length; i++) {
