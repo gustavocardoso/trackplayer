@@ -279,10 +279,14 @@ body {
 }
 
 .tracks-table {
-  display: none;
   @extend %border-box;
+  display: none;
   width: 100%;
   background: #000;
+
+  &.show {
+    display: table;
+  }
 
   thead {
     background: #333;
