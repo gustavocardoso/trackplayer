@@ -2985,10 +2985,14 @@ body:after {
   background: #000;
 }
 /* line 287, ../sass/_base.scss */
+.tracks-table.show {
+  display: table;
+}
+/* line 291, ../sass/_base.scss */
 .tracks-table thead {
   background: #333;
 }
-/* line 290, ../sass/_base.scss */
+/* line 294, ../sass/_base.scss */
 .tracks-table thead th {
   font-weight: 400;
   text-align: left;
@@ -2997,49 +3001,49 @@ body:after {
   text-shadow: 1px 1px 1px black;
   padding: 10px;
 }
-/* line 300, ../sass/_base.scss */
+/* line 304, ../sass/_base.scss */
 .tracks-table td {
   text-shadow: 1px 1px 1px black;
   padding: 10px;
 }
-/* line 304, ../sass/_base.scss */
+/* line 308, ../sass/_base.scss */
 .tracks-table td.action-icon {
   width: 10px;
   padding-left: 15px;
 }
-/* line 309, ../sass/_base.scss */
+/* line 313, ../sass/_base.scss */
 .tracks-table td a {
   display: block;
   text-decoration: none;
   color: #cccccc;
 }
-/* line 314, ../sass/_base.scss */
+/* line 318, ../sass/_base.scss */
 .tracks-table td a:hover {
   color: #cc0033;
 }
-/* line 321, ../sass/_base.scss */
+/* line 325, ../sass/_base.scss */
 .tracks-table tr:nth-child(even) {
   background: #191919;
 }
 
 @keyframes blink {
-  /* line 328, ../sass/_base.scss */
+  /* line 332, ../sass/_base.scss */
   0% {
     opacity: 0;
   }
 
-  /* line 331, ../sass/_base.scss */
+  /* line 335, ../sass/_base.scss */
   50% {
     opacity: 0.5;
   }
 
-  /* line 334, ../sass/_base.scss */
+  /* line 338, ../sass/_base.scss */
   100% {
     opacity: 1;
   }
 }
 
-/* line 339, ../sass/_base.scss */
+/* line 343, ../sass/_base.scss */
 .animate-blink {
   animation-duration: 0.1s;
   animation-delay: 0.1s;
@@ -3048,12 +3052,12 @@ body:after {
   animation-fill-mode: backwards;
 }
 
-/* line 347, ../sass/_base.scss */
+/* line 351, ../sass/_base.scss */
 .song {
   color: #222;
   padding: 5px 10px;
 }
-/* line 352, ../sass/_base.scss */
+/* line 356, ../sass/_base.scss */
 .song .song-title {
   font-size: 2.625em;
   font-weight: normal;
@@ -3061,42 +3065,42 @@ body:after {
   margin: 0;
   padding: 0;
 }
-/* line 360, ../sass/_base.scss */
+/* line 364, ../sass/_base.scss */
 .song .song-artist {
   font-size: 2.125em;
   line-height: 1.4em;
   margin: 0 0 0 0;
   padding: 0;
 }
-/* line 367, ../sass/_base.scss */
+/* line 371, ../sass/_base.scss */
 .song .song-meta {
   font-size: 2.5em;
   line-height: 1.4em;
 }
-/* line 371, ../sass/_base.scss */
+/* line 375, ../sass/_base.scss */
 .song .song-meta .song-bpm, .song .song-meta .song-duration, .song .song-meta .song-elapsed {
   display: inline-block;
   float: left;
   margin: 0 20px 0 0;
   padding: 0;
 }
-/* line 377, ../sass/_base.scss */
+/* line 381, ../sass/_base.scss */
 .song .song-meta .song-bpm .meta-container, .song .song-meta .song-duration .meta-container, .song .song-meta .song-elapsed .meta-container {
   display: inline-block;
   float: left;
 }
-/* line 383, ../sass/_base.scss */
+/* line 387, ../sass/_base.scss */
 .song .song-meta .song-bpm {
   width: 160px;
 }
-/* line 388, ../sass/_base.scss */
+/* line 392, ../sass/_base.scss */
 .song .fa {
   display: inline-block;
   font-size: 0.5em;
   float: left;
   margin: 18px 5px 0 0;
 }
-/* line 395, ../sass/_base.scss */
+/* line 399, ../sass/_base.scss */
 .song .song-elapsed .fa {
   margin: 22px 5px 0 0;
 }

@@ -1,4 +1,4 @@
-(function(window, $) {
+(function(window) {
   'use strict';
   
   var Player = function(player) {
@@ -19,7 +19,7 @@
     this.bar                 = this.barHolder.querySelector('.elapsed-time-bar');
     this.barElapsedTime      = this.barHolder.querySelector('.elapsed-time');
     this.barTimeLeft         = this.barHolder.querySelector('.time-left');
-    this.tracksTable         = this.trackPlayer.querySelectorAll('.tracks-table');
+    this.tracksTable         = this.trackPlayer.querySelector('.tracks-table');
     this.tracks              = this.trackPlayer.querySelectorAll('.track');
     this.context             = this.bar.getContext('2d');
     this.volumeSlider        = this.trackPlayer.querySelector('.volume-slider');
@@ -58,8 +58,7 @@
       obj.trackPlayer.classList.add("power-on");
 
       obj.volumeSlider.value = 75;
-
-      $(obj.tracksTable).show();
+      obj.tracksTable.classList.add('show');
 
       for(var i = 0; i < obj.tracks.length; i++) {
         obj.tracks[i].addEventListener('click', function(e) {
@@ -143,7 +142,7 @@
       obj.unsetBar(obj);
       obj.unsetTrack(obj);
 
-      $(obj.tracksTable).hide();
+      obj.tracksTable.classList.remove('show');
       
       obj.playButton.classList.remove('playing');
       obj.playButtonIcon.classList.add('fa-play');
@@ -301,4 +300,4 @@
 
   window.Player = Player;
 
-})(window, $);
+})(window);
