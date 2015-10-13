@@ -96,14 +96,6 @@
         
         var key = e.keyCode;
 
-        if(key == 38) {
-          obj.volumeUp(obj);
-        }
-
-        if(key == 40) {
-          obj.volumeDown(obj);
-        }
-
         if(key == 32) {
           if(!obj.player.classList.contains('empty')) {
             if(obj.player.paused) {
@@ -112,6 +104,18 @@
               obj.stopTrack(obj);
             }
           }
+        }
+
+        if(key == 38) {
+          obj.volumeUp(obj);
+        }
+
+        if(key == 40) {
+          obj.volumeDown(obj);
+        }
+
+        if(key == 82) {
+          obj.rewindTrack(obj);
         }
 
         if(/^4[89]|5\d$/.test(key)) {
@@ -253,7 +257,7 @@
       songCurrentMinutes = Math.floor(songCurrentTime / 60);
       songCurrentSeconds = Math.floor(songCurrentTime - songCurrentMinutes * 60);
       
-      obj.songElapsedDisplay.innerHTML = "- " + songTotalTimeLeft;
+      obj.songElapsedDisplay.innerHTML = songTotalTimeLeft;
       obj.barElapsedTime.innerHTML = (songCurrentMinutes < 10 ? "0" + songCurrentMinutes : songCurrentMinutes) + ":" + (songCurrentSeconds < 10 ? "0" + songCurrentSeconds : songCurrentSeconds);;
       obj.barTimeLeft.innerHTML = "- " + songTotalTimeLeft;
       obj.setElapsedTimeBar(obj, '#999', false, progressBarWidth);
