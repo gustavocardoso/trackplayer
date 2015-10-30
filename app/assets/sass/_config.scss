@@ -25,13 +25,19 @@ $elapsed-time-display-on: #999;
 
 // VOLUME SLIDER
 $volume-slider-off: #222;
-$volume-slider-on: #000;
+$volume-slider-on: #222;
 $volume-slider-button-off: #222;
 $volume-slider-button-on: #444;
 $volume-slider-button-border-off: #222;
-$volume-slider-button-border-on: #111;
+$volume-slider-button-border-on: #222;
 $volume-slider-icon-off: #333;
 $volume-slider-icon-on: #999;
+
+$volume-slider-width: 230px;
+$volume-slider-height: 13px;
+
+$track-volume-slider-width: 150px;
+$track-volume-slider-height: 13px;
 
 // BACKGROUNDS
 $main-background-color: #000;
