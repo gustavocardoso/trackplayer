@@ -2654,65 +2654,6 @@ body, .container, .track-player, .track-player .box-inner, .track-player .player
   font-style: normal;
 }
 
-/* line 1, ../sass/modules/_common.scss */
-.track-player .player-rack, .track-player .player-controls, .track-player .tracks {
-  border: 1px solid black;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -o-border-radius: 5px;
-  border-radius: 5px;
-  overflow: hidden;
-}
-
-/* line 7, ../sass/modules/_common.scss */
-.track-player .box-inner, .track-player .tracks .tracks-inner {
-  border: 1px solid #2b2b2b;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -o-border-radius: 5px;
-  border-radius: 5px;
-  padding: 8px;
-  overflow: hidden;
-}
-
-/* line 14, ../sass/modules/_common.scss */
-.track-player .player-controls .control-button, .track-player.power-on .control-button {
-  display: block;
-  width: 60px;
-  font-size: 1.25em;
-  text-align: center;
-  background-color: #222222;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  -o-border-radius: 10px;
-  border-radius: 10px;
-  border: 1px solid #181818;
-  box-shadow: 0px 3px 0px 0px #222222, inset 0px 1px 1px 0px rgba(250, 250, 250, 0.2), inset 0px -12px 35px 0px rgba(0, 0, 0, 0.5);
-  /* 4th Shadow */
-  outline: none;
-  cursor: pointer;
-  padding: 14px 8px 8px 8px;
-}
-/* line 31, ../sass/modules/_common.scss */
-.track-player .player-controls .button-active.control-button, .track-player.power-on .button-active.control-button {
-  background-color: #090909;
-  top: 3px;
-  color: #cc0033;
-  text-shadow: 0px 0px 3px #cc0033;
-}
-/* line 35, ../sass/modules/_common.scss */
-.track-player .player-controls .playing.control-button, .track-player.power-on .playing.control-button {
-  color: #99cc00 !important;
-  background-color: #090909;
-  top: 3px;
-  color: #99cc00;
-  text-shadow: 0px 0px 3px #ccff33;
-}
-/* line 41, ../sass/modules/_common.scss */
-.track-player .player-controls .paused.control-button, .track-player.power-on .paused.control-button {
-  color: #99cc00;
-}
-
 @viewport {
   width: device-width;
 }
@@ -2858,52 +2799,18 @@ body:after {
 .track-player .player-controls .volume-slider-holder {
   margin-top: 10px;
 }
-/* line 141, ../sass/_base.scss */
+/* line 142, ../sass/_base.scss */
+.track-player .player-controls .volume-slider-holder input[type='range'] {
+  width: 230px;
+  height: 13px;
+}
+/* line 147, ../sass/_base.scss */
 .track-player .player-controls .volume-slider-holder .fa {
   color: #333333;
   margin: -1px 10px 0 7px;
   float: left;
 }
-/* line 147, ../sass/_base.scss */
-.track-player .player-controls .volume-slider-holder input[type='range'] {
-  -webkit-appearance: none !important;
-  width: 230px;
-  height: 13px;
-  background: #222222;
-  border-bottom: #222 1px solid;
-  margin: 0;
-  padding: 0;
-  outline: 0;
-  float: left;
-}
-/* line 159, ../sass/_base.scss */
-.track-player .player-controls .volume-slider-holder input[type='range']::-moz-range-track {
-  border: none;
-  background: #222222;
-  outline: none;
-}
-/* line 165, ../sass/_base.scss */
-.track-player .player-controls .volume-slider-holder input[type='range']::-webkit-slider-thumb {
-  -webkit-appearance: none !important;
-  width: 15px;
-  height: 22px;
-  background: #222222;
-  border-radius: 5px;
-  border: 1px solid #222222;
-  cursor: pointer;
-  outline: none;
-}
-/* line 176, ../sass/_base.scss */
-.track-player .player-controls .volume-slider-holder input[type='range']::-moz-range-thumb {
-  width: 15px;
-  height: 24px;
-  background: #222222;
-  border-radius: 5px;
-  border: 1px solid #222222;
-  cursor: pointer;
-  outline: none;
-}
-/* line 188, ../sass/_base.scss */
+/* line 155, ../sass/_base.scss */
 .track-player .player-display {
   width: calc(100% - 285px);
   height: 100%;
@@ -2916,83 +2823,63 @@ body:after {
   padding: 8px;
   float: right;
 }
-/* line 202, ../sass/_base.scss */
+/* line 169, ../sass/_base.scss */
 .track-player.power-on .control-button {
   color: #bbb;
 }
-/* line 207, ../sass/_base.scss */
+/* line 174, ../sass/_base.scss */
 .track-player.power-on .control-button.power {
   color: #99cc00;
 }
-/* line 214, ../sass/_base.scss */
+/* line 181, ../sass/_base.scss */
 .track-player.power-on .player-controls .elapsed-time-display {
   color: #999999;
 }
-/* line 219, ../sass/_base.scss */
+/* line 188, ../sass/_base.scss */
 .track-player.power-on .player-controls .volume-slider-holder .fa {
   color: #999999;
 }
-/* line 223, ../sass/_base.scss */
-.track-player.power-on .player-controls .volume-slider-holder input[type='range'] {
-  background: black;
-}
-/* line 227, ../sass/_base.scss */
-.track-player.power-on .player-controls .volume-slider-holder input[type='range']::-moz-range-track {
-  background: black;
-}
-/* line 231, ../sass/_base.scss */
-.track-player.power-on .player-controls .volume-slider-holder input[type='range']::-webkit-slider-thumb {
-  background: #444444;
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
-  border: 1px solid #111111;
-}
-/* line 237, ../sass/_base.scss */
-.track-player.power-on .player-controls .volume-slider-holder input[type='range']::-moz-range-thumb {
-  background: #444444;
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
-  border: 1px solid #111111;
-}
-/* line 245, ../sass/_base.scss */
+/* line 194, ../sass/_base.scss */
 .track-player.power-on .player-display {
   background: url("/assets/images/bg-player-on.png");
 }
-/* line 250, ../sass/_base.scss */
+/* line 199, ../sass/_base.scss */
 .track-player.power-on .player-display .song-elapsed .song-elapsed-display {
   font-size: 1.25em;
   font-weight: bold;
 }
-/* line 258, ../sass/_base.scss */
+/* line 207, ../sass/_base.scss */
 .track-player.power-on .song .song-title, .track-player.power-on .song .song-artist, .track-player.power-on .song .song-meta {
   color: #fff;
   text-shadow: 0px 0px 2px rgba(250, 250, 250, 0.5);
 }
-/* line 265, ../sass/_base.scss */
+/* line 222, ../sass/_base.scss */
 .track-player .tracks {
   height: calc(100% - (200px + 15px));
   width: 100%;
   background: #222222;
   overflow: auto;
 }
-/* line 273, ../sass/_base.scss */
+/* line 230, ../sass/_base.scss */
 .track-player .tracks .tracks-inner {
   height: 100%;
 }
 
-/* line 281, ../sass/_base.scss */
+/* line 238, ../sass/_base.scss */
 .tracks-table {
   display: none;
   width: 100%;
   background: #000;
 }
-/* line 287, ../sass/_base.scss */
+/* line 244, ../sass/_base.scss */
 .tracks-table.show {
   display: table;
 }
-/* line 291, ../sass/_base.scss */
+/* line 248, ../sass/_base.scss */
 .tracks-table thead {
   background: #333;
 }
-/* line 294, ../sass/_base.scss */
+/* line 251, ../sass/_base.scss */
 .tracks-table thead th {
   font-weight: 400;
   text-align: left;
@@ -3001,49 +2888,64 @@ body:after {
   text-shadow: 1px 1px 1px black;
   padding: 10px;
 }
-/* line 304, ../sass/_base.scss */
+/* line 261, ../sass/_base.scss */
 .tracks-table td {
   text-shadow: 1px 1px 1px black;
   padding: 10px;
 }
-/* line 308, ../sass/_base.scss */
+/* line 265, ../sass/_base.scss */
 .tracks-table td.action-icon {
   width: 10px;
   padding-left: 15px;
 }
-/* line 313, ../sass/_base.scss */
+/* line 270, ../sass/_base.scss */
 .tracks-table td a {
   display: block;
   text-decoration: none;
   color: #cccccc;
 }
-/* line 318, ../sass/_base.scss */
+/* line 275, ../sass/_base.scss */
 .tracks-table td a:hover {
   color: #cc0033;
 }
-/* line 325, ../sass/_base.scss */
+/* line 280, ../sass/_base.scss */
+.tracks-table td .track-volume-slider-holder {
+  padding-top: 5px;
+}
+/* line 284, ../sass/_base.scss */
+.tracks-table td .track-volume-slider-holder input[type='range'] {
+  width: 150px;
+  height: 13px;
+}
+/* line 289, ../sass/_base.scss */
+.tracks-table td .track-volume-slider-holder .fa {
+  color: #999999;
+  margin: -1px 10px 0 0;
+  float: left;
+}
+/* line 298, ../sass/_base.scss */
 .tracks-table tr:nth-child(even) {
   background: #191919;
 }
 
 @keyframes blink {
-  /* line 332, ../sass/_base.scss */
+  /* line 305, ../sass/_base.scss */
   0% {
     opacity: 0;
   }
 
-  /* line 335, ../sass/_base.scss */
+  /* line 308, ../sass/_base.scss */
   50% {
     opacity: 0.5;
   }
 
-  /* line 338, ../sass/_base.scss */
+  /* line 311, ../sass/_base.scss */
   100% {
     opacity: 1;
   }
 }
 
-/* line 343, ../sass/_base.scss */
+/* line 316, ../sass/_base.scss */
 .animate-blink {
   animation-duration: 0.1s;
   animation-delay: 0.1s;
@@ -3052,12 +2954,12 @@ body:after {
   animation-fill-mode: backwards;
 }
 
-/* line 351, ../sass/_base.scss */
+/* line 324, ../sass/_base.scss */
 .song {
   color: #222;
   padding: 5px 10px;
 }
-/* line 356, ../sass/_base.scss */
+/* line 329, ../sass/_base.scss */
 .song .song-title {
   font-size: 2.625em;
   font-weight: normal;
@@ -3065,42 +2967,160 @@ body:after {
   margin: 0;
   padding: 0;
 }
-/* line 364, ../sass/_base.scss */
+/* line 337, ../sass/_base.scss */
 .song .song-artist {
   font-size: 2.125em;
   line-height: 1.4em;
   margin: 0 0 0 0;
   padding: 0;
 }
-/* line 371, ../sass/_base.scss */
+/* line 344, ../sass/_base.scss */
 .song .song-meta {
   font-size: 2.5em;
   line-height: 1.4em;
 }
-/* line 375, ../sass/_base.scss */
+/* line 348, ../sass/_base.scss */
 .song .song-meta .song-bpm, .song .song-meta .song-duration, .song .song-meta .song-elapsed {
   display: inline-block;
   float: left;
   margin: 0 20px 0 0;
   padding: 0;
 }
-/* line 381, ../sass/_base.scss */
+/* line 354, ../sass/_base.scss */
 .song .song-meta .song-bpm .meta-container, .song .song-meta .song-duration .meta-container, .song .song-meta .song-elapsed .meta-container {
   display: inline-block;
   float: left;
 }
-/* line 387, ../sass/_base.scss */
+/* line 360, ../sass/_base.scss */
 .song .song-meta .song-bpm {
   width: 160px;
 }
-/* line 392, ../sass/_base.scss */
+/* line 365, ../sass/_base.scss */
 .song .fa {
   display: inline-block;
   font-size: 0.5em;
   float: left;
   margin: 18px 5px 0 0;
 }
-/* line 399, ../sass/_base.scss */
+/* line 372, ../sass/_base.scss */
 .song .song-elapsed .fa {
   margin: 22px 5px 0 0;
+}
+
+/* line 1, ../sass/modules/_common.scss */
+.track-player .player-rack, .track-player .player-controls, .track-player .tracks {
+  border: 1px solid black;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+/* line 7, ../sass/modules/_common.scss */
+.track-player .box-inner, .track-player .tracks .tracks-inner {
+  border: 1px solid #2b2b2b;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  padding: 8px;
+  overflow: hidden;
+}
+
+/* line 14, ../sass/modules/_common.scss */
+.track-player .player-controls .control-button, .track-player.power-on .control-button {
+  display: block;
+  width: 60px;
+  font-size: 1.25em;
+  text-align: center;
+  background-color: #222222;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -o-border-radius: 10px;
+  border-radius: 10px;
+  border: 1px solid #181818;
+  box-shadow: 0px 3px 0px 0px #222222, inset 0px 1px 1px 0px rgba(250, 250, 250, 0.2), inset 0px -12px 35px 0px rgba(0, 0, 0, 0.5);
+  /* 4th Shadow */
+  outline: none;
+  cursor: pointer;
+  padding: 14px 8px 8px 8px;
+}
+/* line 31, ../sass/modules/_common.scss */
+.track-player .player-controls .button-active.control-button, .track-player.power-on .button-active.control-button {
+  background-color: #090909;
+  top: 3px;
+  color: #cc0033;
+  text-shadow: 0px 0px 3px #cc0033;
+}
+/* line 35, ../sass/modules/_common.scss */
+.track-player .player-controls .playing.control-button, .track-player.power-on .playing.control-button {
+  color: #99cc00 !important;
+  background-color: #090909;
+  top: 3px;
+  color: #99cc00;
+  text-shadow: 0px 0px 3px #ccff33;
+}
+/* line 41, ../sass/modules/_common.scss */
+.track-player .player-controls .paused.control-button, .track-player.power-on .paused.control-button {
+  color: #99cc00;
+}
+
+/* line 48, ../sass/modules/_common.scss */
+.track-player .player-controls .volume-slider-holder input[type='range'], .tracks-table td .track-volume-slider-holder input[type='range'] {
+  -webkit-appearance: none !important;
+  background: #222222;
+  border-bottom: #2c2c2c 1px solid;
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  float: left;
+}
+/* line 58, ../sass/modules/_common.scss */
+.track-player .player-controls .volume-slider-holder input[type='range']::-moz-range-track, .tracks-table td .track-volume-slider-holder input[type='range']::-moz-range-track {
+  border: none;
+  background: #222222;
+  outline: none;
+}
+/* line 64, ../sass/modules/_common.scss */
+.track-player .player-controls .volume-slider-holder input[type='range']::-webkit-slider-thumb, .tracks-table td .track-volume-slider-holder input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none !important;
+  width: 15px;
+  height: 22px;
+  background: #222222;
+  border-radius: 5px;
+  border: 1px solid #222222;
+  cursor: pointer;
+  outline: none;
+}
+/* line 75, ../sass/modules/_common.scss */
+.track-player .player-controls .volume-slider-holder input[type='range']::-moz-range-thumb, .tracks-table td .track-volume-slider-holder input[type='range']::-moz-range-thumb {
+  width: 15px;
+  height: 24px;
+  background: #222222;
+  border-radius: 5px;
+  border: 1px solid #222222;
+  cursor: pointer;
+  outline: none;
+}
+
+/* line 87, ../sass/modules/_common.scss */
+.track-player.power-on .player-controls .volume-slider-holder input[type='range'], .track-player.power-on .tracks-table td .track-volume-slider-holder input[type='range'] {
+  background: #222222;
+}
+/* line 91, ../sass/modules/_common.scss */
+.track-player.power-on .player-controls .volume-slider-holder input[type='range']::-moz-range-track, .track-player.power-on .tracks-table td .track-volume-slider-holder input[type='range']::-moz-range-track {
+  background: #222222;
+}
+/* line 95, ../sass/modules/_common.scss */
+.track-player.power-on .player-controls .volume-slider-holder input[type='range']::-webkit-slider-thumb, .track-player.power-on .tracks-table td .track-volume-slider-holder input[type='range']::-webkit-slider-thumb {
+  background: #444444;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+  border: 1px solid #222222;
+}
+/* line 101, ../sass/modules/_common.scss */
+.track-player.power-on .player-controls .volume-slider-holder input[type='range']::-moz-range-thumb, .track-player.power-on .tracks-table td .track-volume-slider-holder input[type='range']::-moz-range-thumb {
+  background: #444444;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+  border: 1px solid #222222;
 }

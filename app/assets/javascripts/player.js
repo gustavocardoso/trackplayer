@@ -2,28 +2,30 @@
   'use strict';
   
   var Player = function(player) {
-    this.trackPlayer         = document.querySelector(player);
-    this.powerButton         = this.trackPlayer.querySelector('.power');
-    this.playButton          = this.trackPlayer.querySelector('.play');
-    this.playButtonIcon      = this.playButton.querySelector('.fa');
-    this.rewindButton        = this.trackPlayer.querySelector('.rewind');
-    this.tracksContainer     = this.trackPlayer.querySelector('.tracks-list');
-    this.playerDisplay       = this.trackPlayer.querySelector('.player-display');
-    this.songTitleDisplay    = this.trackPlayer.querySelector('.song-title-display');
-    this.songArtistDisplay   = this.trackPlayer.querySelector('.song-artist-display');
-    this.songDurationDisplay = this.trackPlayer.querySelector('.song-duration-display');
-    this.songBpmDisplay      = this.trackPlayer.querySelector('.song-bpm-display');
-    this.songElapsedDisplay  = this.trackPlayer.querySelector('.song-elapsed-display');
-    this.player              = this.trackPlayer.querySelector('#player');
-    this.barHolder           = this.trackPlayer.querySelector('.elapsed-time-bar-holder');
-    this.bar                 = this.barHolder.querySelector('.elapsed-time-bar');
-    this.barElapsedTime      = this.barHolder.querySelector('.elapsed-time');
-    this.barTimeLeft         = this.barHolder.querySelector('.time-left');
-    this.tracksTable         = this.trackPlayer.querySelector('.tracks-table');
-    this.tracks              = this.trackPlayer.querySelectorAll('.track');
-    this.context             = this.bar.getContext('2d');
-    this.volumeSlider        = this.trackPlayer.querySelector('.volume-slider');
-    this.keys                = {48: 10, 49: 1, 50: 2, 51: 3, 52: 4, 53: 5, 54: 6, 55: 7, 56: 8, 57: 9};
+    this.trackPlayer          = document.querySelector(player);
+    this.powerButton          = this.trackPlayer.querySelector('.power');
+    this.playButton           = this.trackPlayer.querySelector('.play');
+    this.playButtonIcon       = this.playButton.querySelector('.fa');
+    this.rewindButton         = this.trackPlayer.querySelector('.rewind');
+    this.tracksContainer      = this.trackPlayer.querySelector('.tracks-list');
+    this.playerDisplay        = this.trackPlayer.querySelector('.player-display');
+    this.songTitleDisplay     = this.trackPlayer.querySelector('.song-title-display');
+    this.songArtistDisplay    = this.trackPlayer.querySelector('.song-artist-display');
+    this.songDurationDisplay  = this.trackPlayer.querySelector('.song-duration-display');
+    this.songBpmDisplay       = this.trackPlayer.querySelector('.song-bpm-display');
+    this.songElapsedDisplay   = this.trackPlayer.querySelector('.song-elapsed-display');
+    this.player               = this.trackPlayer.querySelector('#player');
+    this.barHolder            = this.trackPlayer.querySelector('.elapsed-time-bar-holder');
+    this.bar                  = this.barHolder.querySelector('.elapsed-time-bar');
+    this.barElapsedTime       = this.barHolder.querySelector('.elapsed-time');
+    this.barTimeLeft          = this.barHolder.querySelector('.time-left');
+    this.tracksTable          = this.trackPlayer.querySelector('.tracks-table');
+    this.tracks               = this.trackPlayer.querySelectorAll('.track');
+    this.context              = this.bar.getContext('2d');
+    this.volumeSlider         = this.trackPlayer.querySelector('.volume-slider');
+    this.tracksVolumeSlideres = this.trackPlayer.querySelectorAll('.track-volume-slider');
+    this.defaultVolume        = 50;
+    this.keys                 = {48: 10, 49: 1, 50: 2, 51: 3, 52: 4, 53: 5, 54: 6, 55: 7, 56: 8, 57: 9};
   };
 
   Player.prototype = {
@@ -57,7 +59,8 @@
       obj.trackPlayer.classList.remove('power-off');
       obj.trackPlayer.classList.add("power-on");
 
-      obj.volumeSlider.value = 50;
+      obj.volumeSlider.value = obj.defaultVolume;
+      obj.setVolume(obj, obj.defaultVolume);
       obj.tracksTable.classList.add('show');
 
       for(var i = 0; i < obj.tracks.length; i++) {
@@ -65,6 +68,13 @@
           e.preventDefault();
           obj.unsetTrack(obj);
           obj.setTrack(e.target, obj);
+        }, false);
+      }
+
+      for(var i = 0; i < obj.tracksVolumeSlideres.length; i++) {
+        obj.tracksVolumeSlideres[i].addEventListener('change', function(e) {
+          e.preventDefault();
+          obj.setTrackVolume(this)
         }, false);
       }
 
@@ -87,8 +97,8 @@
         obj.setElapsedTimeBar(obj, '#ccc', false);
       }, false);
 
-      obj.volumeSlider.addEventListener('input', function(e) {
-        obj.setVolume(obj);
+      obj.volumeSlider.addEventListener('change', function(e) {
+        obj.setVolume(obj, this.value);
       }, false);
 
       document.addEventListener('keyup', function(e) {
@@ -107,11 +117,15 @@
         }
 
         if(key == 38) {
-          obj.volumeUp(obj);
+          var volume = parseInt(obj.volumeSlider.value);
+          obj.volumeSlider.value = volume;
+          obj.volumeUp(obj, volume);
         }
 
         if(key == 40) {
-          obj.volumeDown(obj);
+          var volume = parseInt(obj.volumeSlider.value);
+          obj.volumeSlider.value = volume;
+          obj.volumeDown(obj, volume);
         }
 
         if(key == 82) {
@@ -157,6 +171,7 @@
     setTrack: function(track, obj) {
 
       var info = track.dataset;
+      var trackVolume = parseInt(document.querySelector("[data-trackid='"+ info.referenceid +"']").value);
 
       obj.player.pause();
       
@@ -174,6 +189,9 @@
 
       obj.player.src = info.filename;
       obj.player.classList.remove('empty');
+
+      obj.setVolume(obj, trackVolume);
+      obj.volumeSlider.value = trackVolume;
 
     },
 
@@ -281,23 +299,59 @@
       obj.context.clearRect(0, 0, 245, 15);
     },
 
-    setVolume: function(obj) {
-      obj.player.volume = obj.volumeSlider.value / 100;
+    setVolume: function(obj, volume) {
+      obj.player.volume = volume / 100;
     },
 
     volumeUp: function(obj) {
-      if(obj.volumeSlider.value < 100) {
-        var originalVolume = parseInt(obj.volumeSlider.value);
+      var volume = parseInt(obj.volumeSlider.value);
+      
+      if(volume < 100) {
+        var originalVolume = volume;
         obj.volumeSlider.value = originalVolume + 1;
-        obj.setVolume(obj);
+        obj.setVolume(obj, volume);
       }
     },
 
     volumeDown: function(obj) {
-      if(obj.volumeSlider.value > 0) {
-        var originalVolume = parseInt(obj.volumeSlider.value);
+      var volume = parseInt(obj.volumeSlider.value);
+
+      if(volume > 0) {
+        var originalVolume = volume;
         obj.volumeSlider.value = originalVolume - 1;
-        obj.setVolume(obj);
+        obj.setVolume(obj, volume);
+      }
+    },
+
+    setTrackVolume: function(track) {
+      var trackId = track.dataset.trackid;
+      var trackVolume = parseInt(track.value);
+      var xcsrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content");
+      var httpRequest;
+      
+      if(window.XMLHttpRequest) {
+        httpRequest = new XMLHttpRequest();
+      } else if(window.ActiveXObject) {
+        httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
+      }
+
+      httpRequest.open("PUT", "/tracks/" + trackId, true);
+      httpRequest.setRequestHeader("X-CSRF-Token", xcsrfToken);
+      httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+      httpRequest.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+      httpRequest.send("_method=patch&track[volume]=" + trackVolume + "&authenticity_token="+ xcsrfToken);
+
+      httpRequest.onreadystatechange = function() {
+        try {
+          if(httpRequest.readyState === XMLHttpRequest.DONE) {
+            if (httpRequest.status === 200) {
+              console.log('Volume saved!');
+            }
+          }
+        }
+        catch(e) {
+          alert('Caught Exception: ' + e.description);
+        }
       }
     }
   }

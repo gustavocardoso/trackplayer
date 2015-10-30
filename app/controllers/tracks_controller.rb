@@ -40,9 +40,13 @@ class TracksController < ApplicationController
   def update
     @track = Track.find(params[:id])
     if @track.update(track_params)
-      redirect_to tracks_url, notice: "Track updated with success!"
+      if !request.xhr?
+        redirect_to tracks_url, notice: "Track updated with success!"
+      else
+        render nothing: true
+      end
     else
-      render :edit
+      format.html { render :edit }
     end
   end
 
@@ -57,6 +61,6 @@ class TracksController < ApplicationController
 
   private
   def track_params
-    params.require(:track).permit(:title, :artist, :bpm, :duration, :observations, :file)
+    params.require(:track).permit(:title, :artist, :bpm, :duration, :observations, :file, :volume)
   end
 end
