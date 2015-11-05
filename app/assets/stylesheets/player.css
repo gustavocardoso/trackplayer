@@ -1,7 +1,3 @@
-/*!
- *  Font Awesome 4.0.3 by @davegandy - http://fontawesome.io - @fontawesome
- *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
- */
 /* FONT PATH
  * -------------------------- */
 @font-face {
@@ -2587,13 +2583,13 @@ body, .container, .track-player, .track-player .box-inner, .track-player .player
   /* 4th Shadow */
 }
 
-/* line 1, ../sass/helpers/_transitions.scss */
+/* line 18, ../sass/helpers/_transitions.scss */
 .track-player .player-display {
   transition: background 0.3s ease;
   -webkit-backface-visibility: hidden;
 }
 
-/* line 6, ../sass/helpers/_transitions.scss */
+/* line 38, ../sass/helpers/_transitions.scss */
 .track-player .player-controls .control-button, .track-player.power-on .control-button {
   transition: color 0.3s ease;
   -o-transition: color 0.3s ease;
@@ -2602,7 +2598,7 @@ body, .container, .track-player, .track-player .box-inner, .track-player .player
   -webkit-backface-visibility: hidden;
 }
 
-/* line 14, ../sass/helpers/_transitions.scss */
+/* line 61, ../sass/helpers/_transitions.scss */
 .track-player.power-on .player-display, .track-player .tracks .tracks-inner {
   transition: color 0.3s ease;
   -o-transition: color 0.3s ease;
@@ -2611,7 +2607,7 @@ body, .container, .track-player, .track-player .box-inner, .track-player .player
   -webkit-backface-visibility: hidden;
 }
 
-/* line 22, ../sass/helpers/_transitions.scss */
+/* line 84, ../sass/helpers/_transitions.scss */
 .track-player .player-controls .control-button, .track-player.power-on .control-button {
   transition: text-shadow 0.3s ease;
   -o-transition: text-shadow 0.3s ease;
@@ -2620,7 +2616,7 @@ body, .container, .track-player, .track-player .box-inner, .track-player .player
   -webkit-backface-visibility: hidden;
 }
 
-/* line 30, ../sass/helpers/_transitions.scss */
+/* line 107, ../sass/helpers/_transitions.scss */
 .track-player .player-controls .button-active.control-button, .track-player.power-on .button-active.control-button, .track-player .player-controls .playing.control-button, .track-player.power-on .playing.control-button {
   transition: background-color 0.3s ease;
   -o-transition: background-color 0.3s ease;
@@ -3007,7 +3003,7 @@ body:after {
   margin: 22px 5px 0 0;
 }
 
-/* line 1, ../sass/modules/_common.scss */
+/* line 19, ../sass/modules/_common.scss */
 .track-player .player-rack, .track-player .player-controls, .track-player .tracks {
   border: 1px solid black;
   -webkit-border-radius: 5px;
@@ -3017,7 +3013,7 @@ body:after {
   overflow: hidden;
 }
 
-/* line 7, ../sass/modules/_common.scss */
+/* line 38, ../sass/modules/_common.scss */
 .track-player .box-inner, .track-player .tracks .tracks-inner {
   border: 1px solid #2b2b2b;
   -webkit-border-radius: 5px;
@@ -3028,7 +3024,7 @@ body:after {
   overflow: hidden;
 }
 
-/* line 14, ../sass/modules/_common.scss */
+/* line 51, ../sass/modules/_common.scss */
 .track-player .player-controls .control-button, .track-player.power-on .control-button {
   display: block;
   width: 60px;
@@ -3046,14 +3042,14 @@ body:after {
   cursor: pointer;
   padding: 14px 8px 8px 8px;
 }
-/* line 31, ../sass/modules/_common.scss */
+/* line 68, ../sass/modules/_common.scss */
 .track-player .player-controls .button-active.control-button, .track-player.power-on .button-active.control-button {
   background-color: #090909;
   top: 3px;
   color: #cc0033;
   text-shadow: 0px 0px 3px #cc0033;
 }
-/* line 35, ../sass/modules/_common.scss */
+/* line 72, ../sass/modules/_common.scss */
 .track-player .player-controls .playing.control-button, .track-player.power-on .playing.control-button {
   color: #99cc00 !important;
   background-color: #090909;
@@ -3061,12 +3057,12 @@ body:after {
   color: #99cc00;
   text-shadow: 0px 0px 3px #ccff33;
 }
-/* line 41, ../sass/modules/_common.scss */
+/* line 78, ../sass/modules/_common.scss */
 .track-player .player-controls .paused.control-button, .track-player.power-on .paused.control-button {
   color: #99cc00;
 }
 
-/* line 48, ../sass/modules/_common.scss */
+/* line 91, ../sass/modules/_common.scss */
 .track-player .player-controls .volume-slider-holder input[type='range'], .tracks-table td .track-volume-slider-holder input[type='range'] {
   -webkit-appearance: none !important;
   background: #222222;
@@ -3076,13 +3072,13 @@ body:after {
   outline: 0;
   float: left;
 }
-/* line 58, ../sass/modules/_common.scss */
+/* line 101, ../sass/modules/_common.scss */
 .track-player .player-controls .volume-slider-holder input[type='range']::-moz-range-track, .tracks-table td .track-volume-slider-holder input[type='range']::-moz-range-track {
   border: none;
   background: #222222;
   outline: none;
 }
-/* line 64, ../sass/modules/_common.scss */
+/* line 107, ../sass/modules/_common.scss */
 .track-player .player-controls .volume-slider-holder input[type='range']::-webkit-slider-thumb, .tracks-table td .track-volume-slider-holder input[type='range']::-webkit-slider-thumb {
   -webkit-appearance: none !important;
   width: 15px;
@@ -3093,7 +3089,7 @@ body:after {
   cursor: pointer;
   outline: none;
 }
-/* line 75, ../sass/modules/_common.scss */
+/* line 118, ../sass/modules/_common.scss */
 .track-player .player-controls .volume-slider-holder input[type='range']::-moz-range-thumb, .tracks-table td .track-volume-slider-holder input[type='range']::-moz-range-thumb {
   width: 15px;
   height: 24px;
@@ -3104,21 +3100,21 @@ body:after {
   outline: none;
 }
 
-/* line 87, ../sass/modules/_common.scss */
+/* line 136, ../sass/modules/_common.scss */
 .track-player.power-on .player-controls .volume-slider-holder input[type='range'], .track-player.power-on .tracks-table td .track-volume-slider-holder input[type='range'] {
   background: #222222;
 }
-/* line 91, ../sass/modules/_common.scss */
+/* line 140, ../sass/modules/_common.scss */
 .track-player.power-on .player-controls .volume-slider-holder input[type='range']::-moz-range-track, .track-player.power-on .tracks-table td .track-volume-slider-holder input[type='range']::-moz-range-track {
   background: #222222;
 }
-/* line 95, ../sass/modules/_common.scss */
+/* line 144, ../sass/modules/_common.scss */
 .track-player.power-on .player-controls .volume-slider-holder input[type='range']::-webkit-slider-thumb, .track-player.power-on .tracks-table td .track-volume-slider-holder input[type='range']::-webkit-slider-thumb {
   background: #444444;
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
   border: 1px solid #222222;
 }
-/* line 101, ../sass/modules/_common.scss */
+/* line 150, ../sass/modules/_common.scss */
 .track-player.power-on .player-controls .volume-slider-holder input[type='range']::-moz-range-thumb, .track-player.power-on .tracks-table td .track-volume-slider-holder input[type='range']::-moz-range-thumb {
   background: #444444;
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
