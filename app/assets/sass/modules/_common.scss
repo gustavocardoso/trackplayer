@@ -1,9 +1,40 @@
+////
+/// Trackplayer v 0.1
+/// @author Gustavo Cardoso
+////
+
+/// Sets the outter box
+/// @group placeholders
+/// @example scss - Basic Usage Sass
+///   .my-box {
+///     @extends %box-outter;
+///   }
+///
+/// @example scss - Basic Usage CSS Output
+///   .my-box {
+///     border: 1px solid $box-border-outter;
+///     @include round-border(5px);
+///     overflow: hidden;
+///   }
 %box-outter {
   border: 1px solid $box-border-outter;
   @include round-border(5px);
   overflow: hidden;
 }
 
+/// Sets the inner box
+/// @group placeholders
+/// @example scss - Basic Usage Sass
+///   .my-box {
+///     @extends %box-outter;
+///   }
+///
+/// @example scss - Basic Usage CSS Output
+///   .my-box {
+///     border: 1px solid $box-border-outter;
+///     @include round-border(5px);
+///     overflow: hidden;
+///   }
 %box-inner {
   border: 1px solid $box-border-inner;
   @include round-border(5px);
@@ -11,6 +42,12 @@
   overflow: hidden;
 }
 
+/// Sets the control button
+/// @group placeholders
+/// @example scss - Basic Usage Sass
+///   .my-box {
+///     @extends %box-outter;
+///   }
 %control-button {
   display: block;
   width: 60px;
@@ -44,6 +81,12 @@
   }
 }
 
+/// Sets the basic slider
+/// @group placeholders
+/// @example scss - Basic Usage Sass
+///   .my-slider {
+///     @extends %basic-slider;
+///   }
 %basic-slider {
   input[type='range'] {
     -webkit-appearance: none !important;
@@ -83,6 +126,12 @@
   }
 }
 
+/// Sets the basic slider on
+/// @group placeholders
+/// @example scss - Basic Usage Sass
+///   .my-slider-on {
+///     @extends %basic-slider-on;
+///   }
 %basic-slider-on {
   input[type='range'] {
     background: $volume-slider-on;

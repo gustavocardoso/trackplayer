@@ -32,6 +32,29 @@ module.exports = function(grunt) {
       }
     },
 
+    sassdoc: {
+      default: {
+        src: "app/assets/sass/**/*.scss",
+        options: {
+          dest: "public/docs",
+          display: {
+            access: ["public", "private"],
+            alias: true,
+            watermark: true,
+          },
+          groups: {
+            slug: "Title",
+            helpers: "Helpers",
+            hacks: "Dirty Hacks & Fixes",
+            'my-balls': "My Balls",
+            'undefined': "Ungrouped",
+          },
+          basePath: "https://github.com/gustavocardoso/trackplayer",
+          descriptionPath: "README.md"
+        },
+      },
+    },
+
     uglify: {
       options: {
         mangle: false
@@ -87,9 +110,11 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks("grunt-image-embed");
   grunt.loadNpmTasks('grunt-contrib-testem');
+  grunt.loadNpmTasks('grunt-sassdoc');
 
   // Default task(s).
+  grunt.registerTask('doc', ['sassdoc']);
   grunt.registerTask('javascripts', ['uglify']);
-  grunt.registerTask('default', ['compass:dev', 'uglify']);
   grunt.registerTask('release', ['compass:dist']);
+  grunt.registerTask('default', ['compass:dev', 'uglify']);
 };
