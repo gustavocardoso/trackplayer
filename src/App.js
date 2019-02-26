@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
 
 import Admin from './backend'
 import TrackPlayer from './frontend'
@@ -9,8 +9,10 @@ class App extends Component {
     return (
       <Router>
         <div className='App'>
-          <Route exact path='/' component={TrackPlayer} />
-          <Route path='/tracks' component={Admin} />
+          <Switch>
+            <Route exact path='/' component={TrackPlayer} />
+            <Route path='/tracks' component={Admin} />
+          </Switch>
         </div>
       </Router>
     )
