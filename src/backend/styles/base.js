@@ -33,6 +33,10 @@ export const TopBar = styled.div`
   @media screen and (${media.large}) {
     padding: ${layout.padding.large};
   }
+
+  @media screen and (${media.xLarge}) {
+    padding: ${layout.padding.xLarge};
+  }
 `
 
 export const Logo = styled.div`
@@ -55,15 +59,8 @@ export const Title = styled.h1`
   }
 `
 
-export const Navigation = styled.div`
-  padding: ${layout.padding.basic};
-
-  @media screen and (${media.large}) {
-    padding: ${layout.padding.large};
-  }
-`
-
 export const ContentHeading = styled.header`
+  display: flex;
   background-color: ${colors.bg.contentHeading};
   border-bottom: 1px solid #cfdbe2;
   padding: 0 calc(2 * ${layout.padding.element});
@@ -73,8 +70,11 @@ export const ContentHeading = styled.header`
 `
 
 export const Heading = styled.h2`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
   font-size: 1.5rem;
-  line-height: 1.1;
   color: ${colors.text.heading};
   font-weight: 400;
 `
@@ -88,6 +88,10 @@ export const Credits = styled.footer`
 
   @media screen and (${media.large}) {
     margin: ${layout.margin.large};
+  }
+
+  @media screen and (${media.xLarge}) {
+    margin: ${layout.margin.xLarge};
   }
 
   a {
