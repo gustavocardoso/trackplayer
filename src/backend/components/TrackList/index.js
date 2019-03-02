@@ -1,8 +1,10 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+import { MdAddCircle } from 'react-icons/md'
 
 import { ContentHeading, Heading } from '../../styles/base'
 
-import { Container, Tracks } from './styles'
+import { Container, Navigation, IconContainer, Tracks } from './styles'
 import TrackItem from '../TrackItem'
 
 const tracks = [
@@ -47,8 +49,15 @@ const TrackList = () => (
     <Container>
       <ContentHeading>
         <Heading>Track list</Heading>
+
+        <Navigation as={Link} to='tracks/add'>
+          <IconContainer>
+            <MdAddCircle className='add-icon' />
+          </IconContainer>
+          Add new track
+        </Navigation>
       </ContentHeading>
-      
+
       <Tracks>
         {tracks.map(track => (
           <TrackItem {...track} key={track.id} />

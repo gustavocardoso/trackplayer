@@ -2,18 +2,21 @@ export const layout = {
   padding: {
     basic: '0 2rem',
     large: '0 6rem',
+    xLarge: '0 12rem',
     element: '1rem'
   },
 
   margin: {
     basic: '2rem 2rem',
     large: '2rem 6rem',
+    xLarge: '2rem 12rem',
     element: '1rem'
   }
 }
 
 export const media = {
-  large: 'min-width: 900px'
+  large: 'min-width: 900px',
+  xLarge: 'min-width: 1500px'
 }
 
 export const colorsDefs = {
@@ -55,14 +58,15 @@ export const colors = {
     topBarLight: colorsDefs.blue.pictonLight,
     basicButton: colorsDefs.white.pure,
     activeButton: colorsDefs.green.jungle,
-    inactiveButton: colorsDefs.red.carnation,
+    inactiveButton: colorsDefs.gray.gallery,
     editButton: colorsDefs.blue.picton,
     editButtonHover: colorsDefs.blue.cornflower,
     deleteButton: colorsDefs.red.carnation,
     basicContainer: colorsDefs.white.alabaster,
     contentHeading: colorsDefs.gray.athens,
     trackIcon: colorsDefs.gray.porcelain,
-    credits: colorsDefs.gray.pure
+    credits: colorsDefs.gray.pure,
+    navigationHover: colorsDefs.green.jungle
   },
 
   border: {
@@ -70,10 +74,11 @@ export const colors = {
     basicTrackContainer: colorsDefs.gray.mystic,
     basicButton: colorsDefs.gray.gallery,
     activeButton: colorsDefs.green.jungle,
-    inactiveButton: colorsDefs.red.carnation,
+    inactiveButton: colorsDefs.gray.gallery,
     editButton: colorsDefs.blue.picton,
     editButtonHover: colorsDefs.blue.cerulean,
-    deleteButton: colorsDefs.red.carnation
+    deleteButton: colorsDefs.red.carnation,
+    navigationHover: colorsDefs.green.jungle
   },
 
   text: {
@@ -83,9 +88,12 @@ export const colors = {
     trackTitle: colorsDefs.blue.cornflower,
     trackInfo: colorsDefs.gray.emperor,
     heading: colorsDefs.gray.pure,
-    statusBadge: colorsDefs.white.pure,
+    statusBadgeActive: colorsDefs.white.pure,
+    statusBadgeInactive: colorsDefs.gray.pure,
     credits: colorsDefs.gray.silver,
     creditsLinks: colorsDefs.gray.silver,
-    creditsLinksHover: colorsDefs.gray.emperor
+    creditsLinksHover: colorsDefs.gray.emperor,
+    navigationHover: colorsDefs.white.pure,
+    navigationActive: colorsDefs.green.jungle
   }
 }

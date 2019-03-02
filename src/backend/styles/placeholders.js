@@ -16,6 +16,10 @@ export const basicContainer = styled.div`
   @media screen and (${media.large}) {
     margin: ${layout.margin.large};
   }
+
+  @media screen and (${media.xLarge}) {
+    margin: ${layout.margin.xLarge};
+  }
 `
 
 export const basicTrackContainer = styled.li`
@@ -26,6 +30,7 @@ export const basicTrackContainer = styled.li`
 `
 
 export const basicButton = styled.div`
+  display: inline-block;
   font-size: 0.8125rem;
   font-weight: 400;
   color: ${colors.text.basicButton};
@@ -38,9 +43,8 @@ export const basicButton = styled.div`
   background-color: ${colors.bg.basicButton};
   border: 1px solid ${colors.border.basicButton};
   line-height: 1.52857;
-  /* border-radius: 50px; */
-  /* -webkit-appearance: none;
-  outline: none!important; */
+  -webkit-appearance: none;
+  outline: none !important;
   padding: 0.375rem 1rem;
   border-radius: 0.1875rem;
 `
