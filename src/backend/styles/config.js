@@ -53,9 +53,12 @@ export const colors = {
     main: colorsDefs.gray.athensLight,
     topBar: colorsDefs.blue.picton,
     topBarLight: colorsDefs.blue.pictonLight,
-    basicButton: colorsDefs.white,
+    basicButton: colorsDefs.white.pure,
     activeButton: colorsDefs.green.jungle,
     inactiveButton: colorsDefs.red.carnation,
+    editButton: colorsDefs.blue.picton,
+    editButtonHover: colorsDefs.blue.cornflower,
+    deleteButton: colorsDefs.red.carnation,
     basicContainer: colorsDefs.white.alabaster,
     contentHeading: colorsDefs.gray.athens,
     trackIcon: colorsDefs.gray.porcelain,
@@ -67,7 +70,10 @@ export const colors = {
     basicTrackContainer: colorsDefs.gray.mystic,
     basicButton: colorsDefs.gray.gallery,
     activeButton: colorsDefs.green.jungle,
-    inactiveButton: colorsDefs.red.carnation
+    inactiveButton: colorsDefs.red.carnation,
+    editButton: colorsDefs.blue.picton,
+    editButtonHover: colorsDefs.blue.cerulean,
+    deleteButton: colorsDefs.red.carnation
   },
 
   text: {

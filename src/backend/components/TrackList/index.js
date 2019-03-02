@@ -14,7 +14,8 @@ const tracks = [
     duration: '04:56',
     observation: 'Count in eight tempos',
     volume: 5,
-    file: null
+    file: null,
+    status: 0
   },
   {
     id: 2,
@@ -24,7 +25,8 @@ const tracks = [
     duration: '03:45',
     observation: null,
     volume: 8,
-    file: null
+    file: null,
+    status: 0
   },
 
   {
@@ -35,7 +37,8 @@ const tracks = [
     duration: '05:20',
     observation: null,
     volume: 5,
-    file: null
+    file: null,
+    status: 1
   }
 ]
 
