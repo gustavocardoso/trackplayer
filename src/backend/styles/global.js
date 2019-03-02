@@ -1,12 +1,9 @@
 import { createGlobalStyle } from 'styled-components'
 
-export default createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css?family=Montserrat|Roboto');
+import { colors } from '../styles/config'
 
-  :root {
-    --background-color-main: #eee;
-    --color-main: #222;
-  }
+export default createGlobalStyle`
+  @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,900');
 
   * {
     margin: 0;
@@ -15,9 +12,9 @@ export default createGlobalStyle`
   }
 
   body {
-    font: normal normal 100%/1.5 Roboto, sans-serif;
-    color: var(--color-main);
-    background: var(--background-color-main);
+    font: normal normal 1rem/1.5 'Source Sans Pro', sans-serif;
+    color: ${colors.text.main};
+    background: ${colors.bg.main};
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
