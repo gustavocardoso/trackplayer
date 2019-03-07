@@ -66,7 +66,7 @@ export const StatusBadge = styled(ovalButton)`
 `
 
 export const ActionButton = styled(basicButton)`
-  color: ${colors.text.statusBadge};
+  color: ${colors.text.actionButton};
   background: ${props =>
     props.action === 'edit'
       ? `${colors.bg.editButton}`
@@ -80,15 +80,17 @@ export const ActionButton = styled(basicButton)`
   margin-left: calc(${layout.margin.element} / 2);
   justify-self: flex-end;
   cursor: pointer;
+  transition: all 0.3s ease-in-out;
 
   &:hover {
+    color: ${colors.text.actionButtonHover};
     background: ${props =>
     props.action === 'edit'
-      ? `${darken(0.15, colors.bg.editButtonHover)}`
-      : `${darken(0.15, colors.bg.deleteButton)}`};
+      ? `${colors.bg.editButtonHover}`
+      : `${colors.bg.deleteButtonHover}`};
     border-color: ${props =>
     props.action === 'edit'
-      ? `${darken(0.15, colors.border.editButtonHover)}`
-      : `${darken(0.15, colors.border.deleteButton)}`};
+      ? `${colors.border.editButtonHover}`
+      : `${colors.border.deleteButtonHover}`};
   }
 `

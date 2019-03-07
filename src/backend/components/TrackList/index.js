@@ -2,9 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { MdAddCircle } from 'react-icons/md'
 
-import { ContentHeading, Heading } from '../../styles/base'
-
-import { Container, Navigation, IconContainer, Tracks } from './styles'
+import { ContentHeading, Heading, Navigation, IconContainer } from '../../styles/base'
+import { Container, Tracks } from './styles'
 import TrackItem from '../TrackItem'
 
 const tracks = [
@@ -50,11 +49,10 @@ const TrackList = () => (
       <ContentHeading>
         <Heading>Track list</Heading>
 
-        <Navigation as={Link} to='tracks/add'>
+        <Navigation as={Link} to='/tracks/add' title='Add new track' className='add-icon'>
           <IconContainer>
-            <MdAddCircle className='add-icon' />
+            <MdAddCircle className='action-icon' />
           </IconContainer>
-          Add new track
         </Navigation>
       </ContentHeading>
 

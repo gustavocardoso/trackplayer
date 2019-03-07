@@ -19,6 +19,10 @@ export const media = {
   xLarge: 'min-width: 1500px'
 }
 
+export const fonts = {
+  mainFont: '"Source Sans Pro", sans-serif'
+}
+
 export const colorsDefs = {
   black: '#222',
   white: {
@@ -28,6 +32,7 @@ export const colorsDefs = {
   blue: {
     cerulean: '#00B5E1',
     cornflower: '#5d9cec',
+    curious: '#277EE2',
     picton: '#23b7e5',
     pictonLight: '#51c6ea'
   },
@@ -38,16 +43,19 @@ export const colorsDefs = {
     gallery: '#eaeaea',
     geyser: '#cfdbe2',
     mine: '#333333',
-    mystic: '#e4eaec',
+    mystic: '#dde6e9',
     porcelain: '#ecf0f1',
     pure: '#929292',
-    silver: '#bbb'
+    silver: '#bbb',
+    trout: '#495057'
   },
   green: {
+    elf: '#0C947A',
     jungle: '#27c24c'
   },
   red: {
-    carnation: '#f05050'
+    carnation: '#f05050',
+    pomegranate: '#F42831'
   }
 }
 
@@ -59,14 +67,20 @@ export const colors = {
     basicButton: colorsDefs.white.pure,
     activeButton: colorsDefs.green.jungle,
     inactiveButton: colorsDefs.gray.gallery,
-    editButton: colorsDefs.blue.picton,
-    editButtonHover: colorsDefs.blue.cornflower,
+    editButton: colorsDefs.blue.cornflower,
+    editButtonHover: colorsDefs.blue.curious,
     deleteButton: colorsDefs.red.carnation,
+    deleteButtonHover: colorsDefs.red.pomegranate,
     basicContainer: colorsDefs.white.alabaster,
     contentHeading: colorsDefs.gray.athens,
     trackIcon: colorsDefs.gray.porcelain,
     credits: colorsDefs.gray.pure,
-    navigationHover: colorsDefs.green.jungle
+    navigationAddButton: colorsDefs.green.jungle,
+    navigationAddButtonHover: colorsDefs.green.elf,
+    navigationCancelButton: colorsDefs.red.carnation,
+    input: colorsDefs.white.pure,
+    buttonDisabled: colorsDefs.gray.mystic,
+    rangeValue: colorsDefs.gray.geyser
   },
 
   border: {
@@ -76,9 +90,15 @@ export const colors = {
     activeButton: colorsDefs.green.jungle,
     inactiveButton: colorsDefs.gray.gallery,
     editButton: colorsDefs.blue.picton,
-    editButtonHover: colorsDefs.blue.cerulean,
+    editButtonHover: colorsDefs.blue.curious,
     deleteButton: colorsDefs.red.carnation,
-    navigationHover: colorsDefs.green.jungle
+    deleteButtonHover: colorsDefs.red.pomegranate,
+    navigationAddButton: colorsDefs.green.jungle,
+    navigationAddButtonHover: colorsDefs.green.elf,
+    navigationCancelButton: colorsDefs.red.carnation,
+    input: colorsDefs.gray.mystic,
+    inputFocus: colorsDefs.blue.cornflower,
+    inputCheckboxActive: colorsDefs.green.jungle
   },
 
   text: {
@@ -93,7 +113,13 @@ export const colors = {
     credits: colorsDefs.gray.silver,
     creditsLinks: colorsDefs.gray.silver,
     creditsLinksHover: colorsDefs.gray.emperor,
-    navigationHover: colorsDefs.white.pure,
-    navigationActive: colorsDefs.green.jungle
+    navigationAddButton: colorsDefs.white.pure,
+    navigationCancelButton: colorsDefs.white.pure,
+    input: colorsDefs.gray.trout,
+    inputCheckboxActive: colorsDefs.green.jungle,
+    buttonDisabled: colorsDefs.gray.silver,
+    actionButton: colorsDefs.gray.gallery,
+    actionButtonHover: colorsDefs.white.pure,
+    rangeValue: colorsDefs.gray.trout
   }
 }
