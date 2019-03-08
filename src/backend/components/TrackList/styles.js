@@ -10,3 +10,10 @@ export const Container = styled(basicContainer)`
 export const Tracks = styled.ul`
   list-style: none;
 `
+
+export const LogMessage = styled.p`
+  font-size: 1em;
+  color: ${colors.text.logMessage};
+  /* font-weight: 700; */
+  margin: 1rem;
+`

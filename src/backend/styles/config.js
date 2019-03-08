@@ -2,14 +2,14 @@ export const layout = {
   padding: {
     basic: '0 2rem',
     large: '0 6rem',
-    xLarge: '0 12rem',
+    xLarge: '0 26rem',
     element: '1rem'
   },
 
   margin: {
     basic: '2rem 2rem',
     large: '2rem 6rem',
-    xLarge: '2rem 12rem',
+    xLarge: '2rem 26rem',
     element: '1rem'
   }
 }
@@ -108,8 +108,8 @@ export const colors = {
     trackTitle: colorsDefs.blue.cornflower,
     trackInfo: colorsDefs.gray.emperor,
     heading: colorsDefs.gray.pure,
-    statusBadgeActive: colorsDefs.white.pure,
-    statusBadgeInactive: colorsDefs.gray.pure,
+    statusBadgeActive: colorsDefs.green.jungle,
+    statusBadgeInactive: colorsDefs.red.pomegranate,
     credits: colorsDefs.gray.silver,
     creditsLinks: colorsDefs.gray.silver,
     creditsLinksHover: colorsDefs.gray.emperor,
@@ -118,8 +118,9 @@ export const colors = {
     input: colorsDefs.gray.trout,
     inputCheckboxActive: colorsDefs.green.jungle,
     buttonDisabled: colorsDefs.gray.silver,
-    actionButton: colorsDefs.gray.gallery,
+    actionButton: colorsDefs.gray.emperor,
     actionButtonHover: colorsDefs.white.pure,
-    rangeValue: colorsDefs.gray.trout
+    rangeValue: colorsDefs.gray.trout,
+    logMessage: colorsDefs.red.pomegranate
   }
 }

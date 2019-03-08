@@ -1,60 +1,36 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { MdAddCircle } from 'react-icons/md'
 
-import { ContentHeading, Heading, Navigation, IconContainer } from '../../styles/base'
-import { Container, Tracks } from './styles'
+import {
+  ContentHeading,
+  Heading,
+  Navigation,
+  IconContainer
+} from '../../styles/base'
+import { Container, Tracks, LogMessage } from './styles'
 import TrackItem from '../TrackItem'
 
-const tracks = [
-  {
-    id: 1,
-    title: 'Get Lucky',
-    artist: 'Daft Punk',
-    bpm: 120,
-    duration: '04:56',
-    observation: 'Count in eight tempos',
-    volume: 5,
-    file: null,
-    status: 0
-  },
-  {
-    id: 2,
-    title: 'Locked Out of Heaven',
-    artist: 'Bruno Mars',
-    bpm: 100,
-    duration: '03:45',
-    observation: null,
-    volume: 8,
-    file: null,
-    status: 0
-  },
-
-  {
-    id: 3,
-    title: 'Not a Lady',
-    artist: 'Pieces of Hell',
-    bpm: 80,
-    duration: '05:20',
-    observation: null,
-    volume: 5,
-    file: null,
-    status: 1
-  }
-]
-
-const TrackList = () => (
+const TrackList = ({ tracks }) => (
   <div>
     <Container>
       <ContentHeading>
         <Heading>Track list</Heading>
 
-        <Navigation as={Link} to='/tracks/add' title='Add new track' className='add-icon'>
+        <Navigation
+          as={Link}
+          to='/tracks/add'
+          title='Add new track'
+          className='add-icon'
+        >
           <IconContainer>
             <MdAddCircle className='action-icon' />
           </IconContainer>
         </Navigation>
       </ContentHeading>
+
+      {!tracks.length && <LogMessage>There are no tracks here!</LogMessage>}
 
       <Tracks>
         {tracks.map(track => (
@@ -64,5 +40,9 @@ const TrackList = () => (
     </Container>
   </div>
 )
+
+TrackList.propTypes = {
+  tracks: PropTypes.array
+}
 
 export default TrackList

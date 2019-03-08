@@ -30,7 +30,8 @@ export const basicTrackContainer = styled.li`
 `
 
 export const basicButton = styled.div`
-  display: inline-block;
+  display: flex;
+  align-items: center;
   font-size: 0.8125rem;
   font-weight: 400;
   color: ${colors.text.basicButton};

@@ -5,6 +5,8 @@ import { Switch, Route } from 'react-router-dom'
 import GlobalStyle from './styles/global'
 import { Container, TopBar, Logo, Title, Credits } from './styles/base'
 
+import api from './services/api'
+
 import TrackList from './components/TrackList'
 import Track from './components/Track'
 
@@ -16,21 +18,27 @@ class Admin extends Component {
 
     this.state = {
       isReady: false,
-      title: null,
-      artist: null,
-      bpm: null,
-      duration: null,
-      volume: null,
-      observations: null,
+      title: '',
+      artist: '',
+      bpm: '',
+      duration: '',
+      volume: '',
+      observations: '',
       status: false,
-      created_at: Date.now()
+      created_at: Date.now(),
+      tracks: []
     }
 
     this.handleChange = this.handleChange.bind(this)
   }
 
+  async componentDidMount () {
+    const response = await api.get('tracks')
+    const tracks = response.data
+    this.setState({ tracks })
+  }
+
   handleChange (e) {
-    console.log(e.target.value)
     let target = e.target
     let value = target.type === 'checkbox' ? target.checked : target.value
     let name = target.name
@@ -51,7 +59,12 @@ class Admin extends Component {
           </TopBar>
 
           <Switch>
-            <Route exact path={this.props.match.url} component={TrackList} />
+            <Route
+              exact
+              path={this.props.match.url}
+              render={() => <TrackList tracks={this.state.tracks} />}
+            />
+
             <Route
               path={`${this.props.match.url}/add`}
               render={() => (

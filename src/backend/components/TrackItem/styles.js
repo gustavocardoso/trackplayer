@@ -54,30 +54,17 @@ export const StatusBadge = styled(ovalButton)`
     props.status === 'active'
       ? `${colors.text.statusBadgeActive}`
       : `${colors.text.statusBadgeInactive}`};
-  background: ${props =>
-    props.status === 'active'
-      ? `${colors.bg.activeButton}`
-      : `${colors.bg.inactiveButton}`};
-  border-color: ${props =>
-    props.status === 'active'
-      ? `${colors.border.activeButton}`
-      : `${colors.border.inactiveButton}`};
+  border: 0;
+  background: transparent;
   justify-self: flex-end;
+  padding: 0;
 `
 
 export const ActionButton = styled(basicButton)`
   color: ${colors.text.actionButton};
-  background: ${props =>
-    props.action === 'edit'
-      ? `${colors.bg.editButton}`
-      : `${colors.bg.deleteButton}`};
-  border-color: ${props =>
-    props.action === 'edit'
-      ? `${colors.border.editButton}`
-      : `${colors.border.deleteButton}`};
   display: flex;
   align-items: center;
-  margin-left: calc(${layout.margin.element} / 2);
+  margin-left: calc(${layout.margin.element});
   justify-self: flex-end;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
@@ -93,4 +80,8 @@ export const ActionButton = styled(basicButton)`
       ? `${colors.border.editButtonHover}`
       : `${colors.border.deleteButtonHover}`};
   }
+`
+
+export const ActionButtonsGroup = styled.div`
+  display: flex;
 `
