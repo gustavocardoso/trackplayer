@@ -10,13 +10,14 @@ import {
   Meta,
   Info,
   StatusBadge,
-  ActionButton
+  ActionButton,
+  ActionButtonsGroup
 } from './styles'
 
 import AlbumImage from '../../../images/icons/music-album.svg'
 
 const TrackItem = ({ id, title, artist, bpm, duration, volume, status }) => {
-  const statusText = status === 1 ? 'active' : 'inactive'
+  const statusText = status ? 'active' : 'inactive'
 
   return (
     <Container className='track'>
@@ -44,25 +45,27 @@ const TrackItem = ({ id, title, artist, bpm, duration, volume, status }) => {
         </Info>
       </Meta>
 
-      {/* <StatusBadge status={statusText}>{statusText}</StatusBadge> */}
+      <ActionButtonsGroup>
+        <StatusBadge status={statusText}>{statusText}</StatusBadge>
 
-      <ActionButton
-        title='Edit track'
-        action='edit'
-        status='active'
-        as='button'
-      >
-        <MdEdit size={16} />
-      </ActionButton>
+        <ActionButton
+          title='Edit track'
+          action='edit'
+          status='active'
+          as='button'
+        >
+          <MdEdit size={13} />
+        </ActionButton>
 
-      <ActionButton
-        title='Delete track'
-        action='delete'
-        status='active'
-        as='button'
-      >
-        <MdDelete size={16} />
-      </ActionButton>
+        <ActionButton
+          title='Delete track'
+          action='delete'
+          status='active'
+          as='button'
+        >
+          <MdDelete size={13} />
+        </ActionButton>
+      </ActionButtonsGroup>
     </Container>
   )
 }
@@ -71,10 +74,10 @@ TrackItem.propTypes = {
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   artist: PropTypes.string.isRequired,
-  bpm: PropTypes.number.isRequired,
+  bpm: PropTypes.string.isRequired,
   duration: PropTypes.string.isRequired,
   volume: PropTypes.number.isRequired,
-  status: PropTypes.number.isRequired
+  status: PropTypes.bool.isRequired
 }
 
 export default TrackItem

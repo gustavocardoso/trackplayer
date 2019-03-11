@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components'
 
-import { colors } from '../styles/config'
+import { fonts, colors } from '../styles/config'
 
 export default createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,900');
@@ -12,7 +12,7 @@ export default createGlobalStyle`
   }
 
   body {
-    font: normal normal 1rem/1.5 'Source Sans Pro', sans-serif;
+    font: normal normal 1rem/1.5 ${fonts.mainFont};
     color: ${colors.text.main};
     background: ${colors.bg.main};
     text-rendering: optimizeLegibility;

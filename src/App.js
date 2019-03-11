@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Admin from './backend'
 import TrackPlayer from './frontend'
 
+require('dotenv').config()
+
 class App extends Component {
   render () {
     return (

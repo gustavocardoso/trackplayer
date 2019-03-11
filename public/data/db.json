@@ -1,0 +1,36 @@
+{
+  "tracks": [
+    {
+      "title": "Front-end Developer",
+      "artist": "Not a Lady",
+      "bpm": "123",
+      "duration": "04:34",
+      "volume": 0.5,
+      "observations": "",
+      "status": false,
+      "createdAt": 1552293998002,
+      "id": 1
+    },
+    {
+      "title": "Front-end Developer",
+      "artist": "Not a Lady",
+      "bpm": "123",
+      "duration": "04:34",
+      "volume": 0.5,
+      "observations": "",
+      "status": false,
+      "createdAt": 1552295381914,
+      "id": 3
+    },
+    {
+      "title": "Glory of the God",
+      "artist": "Melancoly",
+      "bpm": "120",
+      "duration": "04:48",
+      "volume": 0.6,
+      "observations": "This is a test",
+      "status": true,
+      "id": 6
+    }
+  ]
+}

@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { darken } from 'polished'
 
 import { layout, colors } from '../../styles/config'
 import {
@@ -54,41 +53,34 @@ export const StatusBadge = styled(ovalButton)`
     props.status === 'active'
       ? `${colors.text.statusBadgeActive}`
       : `${colors.text.statusBadgeInactive}`};
-  background: ${props =>
-    props.status === 'active'
-      ? `${colors.bg.activeButton}`
-      : `${colors.bg.inactiveButton}`};
-  border-color: ${props =>
-    props.status === 'active'
-      ? `${colors.border.activeButton}`
-      : `${colors.border.inactiveButton}`};
+  border: 0;
+  background: transparent;
   justify-self: flex-end;
+  padding: 0;
 `
 
 export const ActionButton = styled(basicButton)`
-  color: ${colors.text.statusBadge};
-  background: ${props =>
-    props.action === 'edit'
-      ? `${colors.bg.editButton}`
-      : `${colors.bg.deleteButton}`};
-  border-color: ${props =>
-    props.action === 'edit'
-      ? `${colors.border.editButton}`
-      : `${colors.border.deleteButton}`};
+  color: ${colors.text.actionButton};
   display: flex;
   align-items: center;
-  margin-left: calc(${layout.margin.element} / 2);
+  margin-left: calc(${layout.margin.element});
   justify-self: flex-end;
   cursor: pointer;
+  transition: all 0.3s ease-in-out;
 
   &:hover {
+    color: ${colors.text.actionButtonHover};
     background: ${props =>
     props.action === 'edit'
-      ? `${darken(0.15, colors.bg.editButtonHover)}`
-      : `${darken(0.15, colors.bg.deleteButton)}`};
+      ? `${colors.bg.editButtonHover}`
+      : `${colors.bg.deleteButtonHover}`};
     border-color: ${props =>
     props.action === 'edit'
-      ? `${darken(0.15, colors.border.editButtonHover)}`
-      : `${darken(0.15, colors.border.deleteButton)}`};
+      ? `${colors.border.editButtonHover}`
+      : `${colors.border.deleteButtonHover}`};
   }
+`
+
+export const ActionButtonsGroup = styled.div`
+  display: flex;
 `

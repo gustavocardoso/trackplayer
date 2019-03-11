@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.18.0",
+    "dotenv": "^6.2.0",
+    "json-server": "^0.14.2",
+    "parallelshell": "3.0.1",
     "polished": "^3.0.2",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
@@ -12,7 +16,7 @@
     "styled-components": "^4.1.3"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "node_modules/.bin/parallelshell 'react-scripts start' 'node_modules/.bin/json-server --watch public/data/db.json --port 4000'",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
