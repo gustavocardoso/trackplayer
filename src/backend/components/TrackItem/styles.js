@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { darken } from 'polished'
 
 import { layout, colors } from '../../styles/config'
 import {

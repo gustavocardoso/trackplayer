@@ -74,10 +74,10 @@ TrackItem.propTypes = {
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   artist: PropTypes.string.isRequired,
-  bpm: PropTypes.number.isRequired,
+  bpm: PropTypes.string.isRequired,
   duration: PropTypes.string.isRequired,
   volume: PropTypes.number.isRequired,
-  status: PropTypes.number.isRequired
+  status: PropTypes.bool.isRequired
 }
 
 export default TrackItem

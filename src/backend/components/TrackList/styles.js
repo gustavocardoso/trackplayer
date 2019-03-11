@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { colors, layout } from '../../styles/config'
-import { basicContainer, basicButton } from '../../styles/placeholders'
+import { basicContainer } from '../../styles/placeholders'
 
 export const Container = styled(basicContainer)`
   margin: ${layout.margin.basic};

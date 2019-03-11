@@ -16,7 +16,7 @@ export const layout = {
 
 export const media = {
   large: 'min-width: 900px',
-  xLarge: 'min-width: 1500px'
+  xLarge: 'min-width: 1600px'
 }
 
 export const fonts = {
@@ -79,7 +79,8 @@ export const colors = {
     navigationAddButtonHover: colorsDefs.green.elf,
     navigationCancelButton: colorsDefs.red.carnation,
     input: colorsDefs.white.pure,
-    buttonDisabled: colorsDefs.gray.mystic,
+    insertButtonEnabled: colorsDefs.green.jungle,
+    insertButtonDisabled: colorsDefs.gray.mystic,
     rangeValue: colorsDefs.gray.geyser
   },
 
@@ -98,7 +99,9 @@ export const colors = {
     navigationCancelButton: colorsDefs.red.carnation,
     input: colorsDefs.gray.mystic,
     inputFocus: colorsDefs.blue.cornflower,
-    inputCheckboxActive: colorsDefs.green.jungle
+    inputCheckboxActive: colorsDefs.green.jungle,
+    insertButtonDisabled: colorsDefs.gray.mystic,
+    insertButtonEnabled: colorsDefs.green.jungle
   },
 
   text: {
@@ -117,10 +120,12 @@ export const colors = {
     navigationCancelButton: colorsDefs.white.pure,
     input: colorsDefs.gray.trout,
     inputCheckboxActive: colorsDefs.green.jungle,
-    buttonDisabled: colorsDefs.gray.silver,
+    insertButtonDisabled: colorsDefs.gray.silver,
+    insertButtonEnabled: colorsDefs.white.pure,
     actionButton: colorsDefs.gray.emperor,
     actionButtonHover: colorsDefs.white.pure,
     rangeValue: colorsDefs.gray.trout,
-    logMessage: colorsDefs.red.pomegranate
+    logMessage: colorsDefs.red.pomegranate,
+    requiredField: colorsDefs.gray.pure
   }
 }

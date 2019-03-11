@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, withRouter } from 'react-router-dom'
 
 import GlobalStyle from './styles/global'
 import { Container, TopBar, Logo, Title, Credits } from './styles/base'
@@ -18,32 +18,108 @@ class Admin extends Component {
 
     this.state = {
       isReady: false,
-      title: '',
-      artist: '',
-      bpm: '',
-      duration: '',
-      volume: '',
-      observations: '',
-      status: false,
-      created_at: Date.now(),
-      tracks: []
+      track: {
+        title: '',
+        artist: '',
+        bpm: '',
+        duration: '',
+        volume: 0.5,
+        observations: '',
+        status: false,
+        createdAt: Date.now()
+      },
+      tracks: [],
+      errorMsg: '',
+      showError: false
     }
 
     this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.validateNewTrack = this.validateNewTrack.bind(this)
   }
 
   async componentDidMount () {
+    await this.getTracks()
+  }
+
+  async getTracks () {
     const response = await api.get('tracks')
     const tracks = response.data
+
     this.setState({ tracks })
   }
 
-  handleChange (e) {
-    let target = e.target
+  handleChange (event) {
+    let target = event.target
     let value = target.type === 'checkbox' ? target.checked : target.value
     let name = target.name
 
-    this.setState({ [name]: value })
+    if (name === 'volume') {
+      value = parseFloat(value)
+    }
+
+    this.setState(prevState => {
+      return {
+        track: {
+          ...prevState.track,
+          [name]: value
+        }
+      }
+    })
+  }
+
+  async handleSubmit (event) {
+    event.preventDefault()
+
+    this.setState({
+      showError: false,
+      errorMsg: ''
+    })
+
+    if (this.state.isReady) {
+      const {
+        title,
+        artist,
+        bpm,
+        duration,
+        volume,
+        observations,
+        status,
+        createdAt
+      } = this.state.track
+
+      try {
+        const response = await api.post('tracks', {
+          title,
+          artist,
+          bpm,
+          duration,
+          volume,
+          observations,
+          status,
+          createdAt
+        })
+
+        if (response.statusText === 'Created') {
+          this.props.history.push('/tracks')
+        }
+      } catch (error) {
+        this.setState({
+          showError: true,
+          errorMsg: error.message
+        })
+      }
+    }
+  }
+
+  validateNewTrack () {
+    const { title, artist, bpm, duration } = this.state.track
+
+    if (title !== '' && artist !== '' && bpm !== '' && duration !== '') {
+      this.setState({ isReady: true })
+    } else {
+      this.setState({ isReady: false })
+    }
   }
 
   render () {
@@ -70,14 +146,18 @@ class Admin extends Component {
               render={() => (
                 <Track
                   isReady={this.state.isReady}
-                  title={this.state.title}
-                  artist={this.state.artist}
-                  bpm={this.state.bpm}
-                  duration={this.state.duration}
-                  volume={this.state.volume}
-                  observations={this.state.observations}
-                  status={this.state.status}
+                  title={this.state.track.title}
+                  artist={this.state.track.artist}
+                  bpm={this.state.track.bpm}
+                  duration={this.state.track.duration}
+                  volume={this.state.track.volume}
+                  observations={this.state.track.observations}
+                  status={this.state.track.status}
                   handleChange={this.handleChange}
+                  handleSubmit={this.handleSubmit}
+                  validateNewTrack={this.validateNewTrack}
+                  errorMsg={this.state.errorMsg}
+                  showError={this.state.showError}
                 />
               )}
             />
@@ -126,4 +206,4 @@ Admin.propTypes = {
   match: PropTypes.object.isRequired
 }
 
-export default Admin
+export default withRouter(Admin)

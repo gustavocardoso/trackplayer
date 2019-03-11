@@ -27,6 +27,11 @@ export const basicTrackContainer = styled.li`
   margin-bottom: ${layout.margin.element};
   padding: ${layout.padding.element};
   padding-bottom: calc(2 * ${layout.padding.element});
+
+  &:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+  }
 `
 
 export const basicButton = styled.div`

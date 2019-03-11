@@ -1,44 +1,36 @@
 {
   "tracks": [
     {
-      "id": 1,
-      "title": "Pieces of Hell",
+      "title": "Front-end Developer",
       "artist": "Not a Lady",
-      "bpm": 120,
+      "bpm": "123",
+      "duration": "04:34",
+      "volume": 0.5,
+      "observations": "",
+      "status": false,
+      "createdAt": 1552293998002,
+      "id": 1
+    },
+    {
+      "title": "Front-end Developer",
+      "artist": "Not a Lady",
+      "bpm": "123",
+      "duration": "04:34",
+      "volume": 0.5,
+      "observations": "",
+      "status": false,
+      "createdAt": 1552295381914,
+      "id": 3
+    },
+    {
+      "title": "Glory of the God",
+      "artist": "Melancoly",
+      "bpm": "120",
       "duration": "04:48",
-      "volume": 7,
-      "observations": "It starts after 8 tempos.",
-      "status": true
-    },
-    {
-      "id": 2,
-      "title": "1, 2, 3...",
-      "artist": "Not a Lady",
-      "bpm": 100,
-      "duration": "03:27",
-      "volume": 5,
-      "observations": null,
-      "status": false
-    },
-    {
-      "id": 3,
-      "title": "Get Lucky",
-      "artist": "Daft Punk",
-      "bpm": 140,
-      "duration": "04:20",
-      "volume": 9,
-      "observations": null,
-      "status": true
-    },
-    {
-      "id": 4,
-      "title": "Locked Out of Heaven",
-      "artist": "Bruno Mars",
-      "bpm": 120,
-      "duration": "05:14",
-      "volume": 5,
-      "observations": null,
-      "status": true
+      "volume": 0.6,
+      "observations": "This is a test",
+      "status": true,
+      "id": 6
     }
   ]
 }

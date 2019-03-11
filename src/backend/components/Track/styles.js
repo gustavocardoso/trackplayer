@@ -136,11 +136,16 @@ export const Status = styled.input.attrs({ type: 'checkbox' })`
 
 export const InsertButton = styled(basicButton)`
   cursor: pointer;
+  color: ${colors.text.insertButtonEnabled};
+  background: ${colors.bg.insertButtonEnabled};
+  border-color: ${colors.border.insertButtonEnabled};
   padding: ${layout.padding.element};
+  transition: all 0.3s ease-in-out;
 
   &:disabled {
-    color: ${colors.text.buttonDisabled};
-    background: ${colors.bg.buttonDisabled};
+    color: ${colors.text.insertButtonDisabled};
+    background: ${colors.bg.insertButtonDisabled};
+    border-color: ${colors.border.insertButtonDisabled};
   }
 `
 
@@ -164,5 +169,21 @@ export const RangeContainer = styled.div`
 
   @media screen and (${media.large}) {
     padding-left: 2rem;
+  }
+`
+
+export const RequiredField = styled.span`
+  &:before {
+    display: inline-block;
+    content: '${props => props.text}';
+    font-size: .8rem;
+    font-weight: 400;
+    color: ${colors.text.requiredField};
+    margin-left: .5em;
+
+    @media screen and (${media.large}) {
+      display: block;
+      margin-left: 0;
+    }
   }
 `

@@ -1,8 +1,14 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { MdCancel, MdCheckBox } from 'react-icons/md'
 
-import { ContentHeading, Heading, Navigation, IconContainer } from '../../styles/base'
+import {
+  ContentHeading,
+  Heading,
+  Navigation,
+  IconContainer
+} from '../../styles/base'
 import {
   Container,
   TrackForm,
@@ -15,24 +21,50 @@ import {
   RangeDataList,
   DataListOption,
   RangeValue,
-  RangeContainer
+  RangeContainer,
+  RequiredField
 } from './styles'
+import ErrorLog from '../ErrorLog'
 
-const Track = ({ handleChange, isReady, title, artist, bpm, duration, volume, observations, status }) => (
+const Track = ({
+  handleChange,
+  handleSubmit,
+  validateNewTrack,
+  isReady,
+  title,
+  artist,
+  bpm,
+  duration,
+  volume,
+  observations,
+  status,
+  errorMsg,
+  showError
+}) => (
   <Container>
     <ContentHeading>
       <Heading>New Track</Heading>
 
-      <Navigation as={Link} to='/tracks' title='Cancel and return to track list' className='cancel-icon'>
+      <Navigation
+        as={Link}
+        to='/tracks'
+        title='Cancel and return to track list'
+        className='cancel-icon'
+      >
         <IconContainer>
           <MdCancel className='action-icon' />
         </IconContainer>
       </Navigation>
     </ContentHeading>
 
+    {!!showError && <ErrorLog msg={errorMsg} show={showError} />}
+
     <TrackForm>
       <FormGroup>
-        <FormLabel>Title</FormLabel>
+        <FormLabel>
+          Title
+          <RequiredField text='(required)' />
+        </FormLabel>
         <FormInput
           type='text'
           name='title'
@@ -43,11 +75,15 @@ const Track = ({ handleChange, isReady, title, artist, bpm, duration, volume, ob
           className='flexible-input'
           value={title}
           onChange={handleChange}
+          onBlur={validateNewTrack}
         />
       </FormGroup>
 
       <FormGroup>
-        <FormLabel>Artist</FormLabel>
+        <FormLabel>
+          Artist
+          <RequiredField text='(required)' />
+        </FormLabel>
         <FormInput
           type='text'
           name='artist'
@@ -58,11 +94,15 @@ const Track = ({ handleChange, isReady, title, artist, bpm, duration, volume, ob
           className='flexible-input'
           value={artist}
           onChange={handleChange}
+          onBlur={validateNewTrack}
         />
       </FormGroup>
 
       <FormGroup>
-        <FormLabel>BPM</FormLabel>
+        <FormLabel>
+          BPM
+          <RequiredField text='(required)' />
+        </FormLabel>
         <FormInput
           type='text'
           name='bpm'
@@ -72,11 +112,15 @@ const Track = ({ handleChange, isReady, title, artist, bpm, duration, volume, ob
           placeholder='BPM'
           value={bpm}
           onChange={handleChange}
+          onBlur={validateNewTrack}
         />
       </FormGroup>
 
       <FormGroup>
-        <FormLabel>Duration</FormLabel>
+        <FormLabel>
+          Duration
+          <RequiredField text='(required)' />
+        </FormLabel>
         <FormInput
           type='text'
           name='duration'
@@ -86,50 +130,41 @@ const Track = ({ handleChange, isReady, title, artist, bpm, duration, volume, ob
           placeholder='00:00'
           value={duration}
           onChange={handleChange}
+          onBlur={validateNewTrack}
         />
       </FormGroup>
 
       <FormGroup>
-        <FormLabel>Initial volume</FormLabel>
+        <FormLabel>Volume</FormLabel>
         <RangeContainer>
           <FormInput
             type='range'
             min='0'
-            max='10'
-            step='0.5'
+            max='1'
+            step='0.1'
             name='volume'
             id='track-volume'
-            placeholder='0'
             list='tickmarks'
             className='volume-range'
-            value={volume || 5}
+            value={volume}
             onChange={handleChange}
+            onBlur={validateNewTrack}
           />
           <RangeDataList id='tickmarks' className='sliderticks'>
-            <DataListOption value='0' label='0' />
+            <DataListOption value='0' />
+            <DataListOption value='0.1' />
+            <DataListOption value='0.2' />
+            <DataListOption value='0.3' />
+            <DataListOption value='0.4' />
             <DataListOption value='0.5' />
-            <DataListOption value='1' label='1' />
-            <DataListOption value='1.5' />
-            <DataListOption value='2' label='2' />
-            <DataListOption value='2.5' />
-            <DataListOption value='3' label='3' />
-            <DataListOption value='3.5' />
-            <DataListOption value='4' label='4' />
-            <DataListOption value='4.5' />
-            <DataListOption value='5' label='5' />
-            <DataListOption value='5.5' />
-            <DataListOption value='6' label='6' />
-            <DataListOption value='6.5' />
-            <DataListOption value='7' label='7' />
-            <DataListOption value='7.5' />
-            <DataListOption value='8' label='8' />
-            <DataListOption value='8.5' />
-            <DataListOption value='9' label='9' />
-            <DataListOption value='9.5' />
-            <DataListOption value='10' label='10' />
+            <DataListOption value='0.6' />
+            <DataListOption value='0.7' />
+            <DataListOption value='0.8' />
+            <DataListOption value='0.9' />
+            <DataListOption value='1' />
           </RangeDataList>
 
-          <RangeValue>{volume || 5}</RangeValue>
+          <RangeValue>{volume * 10}</RangeValue>
         </RangeContainer>
       </FormGroup>
 
@@ -138,7 +173,6 @@ const Track = ({ handleChange, isReady, title, artist, bpm, duration, volume, ob
         <FormInput
           name='observations'
           id='track-observations'
-          as='textarea'
           cols='60'
           rows='4'
           className='flexible-input'
@@ -168,18 +202,28 @@ const Track = ({ handleChange, isReady, title, artist, bpm, duration, volume, ob
       </FormGroup>
 
       <FormGroup className='no-label'>
-        <InsertButton
-          as='button'
-          disabled={!isReady}
-          onClick={e => {
-            e.preventDefault()
-          }}
-        >
+        <InsertButton as='button' disabled={!isReady} onClick={handleSubmit}>
           Add track
         </InsertButton>
       </FormGroup>
     </TrackForm>
   </Container>
 )
+
+Track.propTypes = {
+  handleChange: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  validateNewTrack: PropTypes.func.isRequired,
+  isReady: PropTypes.bool.isRequired,
+  title: PropTypes.string,
+  artist: PropTypes.string,
+  bpm: PropTypes.string,
+  duration: PropTypes.string,
+  volume: PropTypes.number,
+  observations: PropTypes.string,
+  status: PropTypes.bool.isRequired,
+  errorMsg: PropTypes.string,
+  showError: PropTypes.bool.isRequired
+}
 
 export default Track
