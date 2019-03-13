@@ -1,21 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
-import { MdAddCircle } from 'react-icons/md'
 
 import * as S from './styles'
-import Track from '../Track'
 
-const TracksList = ({ tracks }) => (
+import Track from '../Track'
+import Navigation from '../../Navigation'
+
+const TracksList = ({ tracks, location: { pathname: url } }) => (
   <S.Container>
     <S.ContentHeading>
       <S.Heading>Track list</S.Heading>
-
-      <S.Navigation as={Link} to='/tracks/new' title='Add new track' className='add-icon'>
-        <S.IconContainer>
-          <MdAddCircle className='action-icon' />
-        </S.IconContainer>
-      </S.Navigation>
+      <Navigation url={url} />
     </S.ContentHeading>
 
     {!tracks.length && <S.LogMessage>There are no tracks here!</S.LogMessage>}
@@ -29,7 +24,8 @@ const TracksList = ({ tracks }) => (
 )
 
 TracksList.propTypes = {
-  tracks: PropTypes.array
+  tracks: PropTypes.array,
+  location: PropTypes.object.isRequired
 }
 
 export default TracksList

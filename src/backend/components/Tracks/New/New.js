@@ -1,12 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
-import { MdCancel, MdCheckBox } from 'react-icons/md'
+import { MdCheckBox } from 'react-icons/md'
 
 import * as S from './styles'
+
 import ErrorLog from '../../Error/Log'
+import Navigation from '../../Navigation'
 
 const TracksNew = ({
+  location: { pathname: url },
   handleChange,
   handleSubmit,
   validateNewTrack,
@@ -25,11 +27,7 @@ const TracksNew = ({
     <S.ContentHeading>
       <S.Heading>New Track</S.Heading>
 
-      <S.Navigation as={Link} to='/tracks' title='Cancel and return to track list' className='cancel-icon'>
-        <S.IconContainer>
-          <MdCancel className='action-icon' />
-        </S.IconContainer>
-      </S.Navigation>
+      <Navigation url={url} />
     </S.ContentHeading>
 
     {!!showError && <ErrorLog msg={errorMsg} show={showError} />}
@@ -176,6 +174,7 @@ const TracksNew = ({
 )
 
 TracksNew.propTypes = {
+  location: PropTypes.object.isRequired,
   handleChange: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   validateNewTrack: PropTypes.func.isRequired,

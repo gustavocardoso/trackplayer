@@ -77,16 +77,7 @@ class Admin extends Component {
     })
 
     if (this.state.isReady) {
-      const {
-        title,
-        artist,
-        bpm,
-        duration,
-        volume,
-        observations,
-        status,
-        createdAt
-      } = this.state.track
+      const { title, artist, bpm, duration, volume, observations, status, createdAt } = this.state.track
 
       try {
         const response = await api.post('tracks', {
@@ -138,13 +129,14 @@ class Admin extends Component {
             <Route
               exact
               path={this.props.match.url}
-              render={() => <TracksList tracks={this.state.tracks} />}
+              render={() => <TracksList {...this.props} tracks={this.state.tracks} />}
             />
 
             <Route
               path={`${this.props.match.url}/new`}
               render={() => (
                 <TracksNew
+                  {...this.props}
                   isReady={this.state.isReady}
                   title={this.state.track.title}
                   artist={this.state.track.artist}
@@ -171,10 +163,7 @@ class Admin extends Component {
             </p>
             <p>
               Icons made by{' '}
-              <a
-                href='https://www.flaticon.com/authors/kiranshastry'
-                title='Kiranshastry'
-              >
+              <a href='https://www.flaticon.com/authors/kiranshastry' title='Kiranshastry'>
                 Kiranshastry
               </a>{' '}
               and{' '}
