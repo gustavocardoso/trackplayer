@@ -9,6 +9,7 @@ import api from './services/api'
 
 import TracksList from './components/Tracks/List'
 import TracksNew from './components/Tracks/New'
+import TracksEdit from './components/Tracks/Edit'
 
 import LogoImage from '../images/icons/wave.svg'
 
@@ -129,14 +130,13 @@ class Admin extends Component {
             <Route
               exact
               path={this.props.match.url}
-              render={() => <TracksList {...this.props} tracks={this.state.tracks} />}
+              render={props => <TracksList {...props} tracks={this.state.tracks} />}
             />
-
             <Route
               path={`${this.props.match.url}/new`}
-              render={() => (
+              render={props => (
                 <TracksNew
-                  {...this.props}
+                  {...props}
                   isReady={this.state.isReady}
                   title={this.state.track.title}
                   artist={this.state.track.artist}
@@ -153,6 +153,7 @@ class Admin extends Component {
                 />
               )}
             />
+            <Route path='/tracks/edit/:id' exact render={props => <TracksEdit {...props} />} />
           </Switch>
         </Container>
 
