@@ -1,8 +1,10 @@
 import styled from 'styled-components'
 import { darken } from 'polished'
 
-import { fonts, colors, layout, media } from '../../styles/config'
-import { basicContainer, basicButton } from '../../styles/placeholders'
+import { fonts, colors, layout, media } from '../../../styles/config'
+import { basicContainer, basicButton } from '../../../styles/placeholders'
+
+export { ContentHeading, Heading, Navigation, IconContainer } from '../../../styles/base'
 
 export const Container = styled(basicContainer)`
   margin: ${layout.margin.basic};

@@ -7,8 +7,8 @@ import { Container, TopBar, Logo, Title, Credits } from './styles/base'
 
 import api from './services/api'
 
-import TrackList from './components/TrackList'
-import Track from './components/Track'
+import TracksList from './components/Tracks/List'
+import TracksNew from './components/Tracks/New'
 
 import LogoImage from '../images/icons/wave.svg'
 
@@ -138,13 +138,13 @@ class Admin extends Component {
             <Route
               exact
               path={this.props.match.url}
-              render={() => <TrackList tracks={this.state.tracks} />}
+              render={() => <TracksList tracks={this.state.tracks} />}
             />
 
             <Route
-              path={`${this.props.match.url}/add`}
+              path={`${this.props.match.url}/new`}
               render={() => (
-                <Track
+                <TracksNew
                   isReady={this.state.isReady}
                   title={this.state.track.title}
                   artist={this.state.track.artist}

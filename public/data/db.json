@@ -31,6 +31,17 @@
       "observations": "This is a test",
       "status": true,
       "id": 6
+    },
+    {
+      "title": "Pieces of Hell",
+      "artist": "Not a Lady",
+      "bpm": "120",
+      "duration": "04:40",
+      "volume": 0.7,
+      "observations": "This is the observation field been filled.",
+      "status": true,
+      "createdAt": 1552438829772,
+      "id": 7
     }
   ]
 }

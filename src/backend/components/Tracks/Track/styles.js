@@ -1,11 +1,7 @@
 import styled from 'styled-components'
 
-import { layout, colors } from '../../styles/config'
-import {
-  basicTrackContainer,
-  basicButton,
-  ovalButton
-} from '../../styles/placeholders'
+import { layout, colors } from '../../../styles/config'
+import { basicTrackContainer, basicButton, ovalButton } from '../../../styles/placeholders'
 
 export const Container = styled(basicTrackContainer)`
   display: flex;
@@ -50,9 +46,7 @@ export const Info = styled.span`
 
 export const StatusBadge = styled(ovalButton)`
   color: ${props =>
-    props.status === 'active'
-      ? `${colors.text.statusBadgeActive}`
-      : `${colors.text.statusBadgeInactive}`};
+    props.status === 'active' ? `${colors.text.statusBadgeActive}` : `${colors.text.statusBadgeInactive}`};
   border: 0;
   background: transparent;
   justify-self: flex-end;
@@ -71,13 +65,9 @@ export const ActionButton = styled(basicButton)`
   &:hover {
     color: ${colors.text.actionButtonHover};
     background: ${props =>
-    props.action === 'edit'
-      ? `${colors.bg.editButtonHover}`
-      : `${colors.bg.deleteButtonHover}`};
+    props.action === 'edit' ? `${colors.bg.editButtonHover}` : `${colors.bg.deleteButtonHover}`};
     border-color: ${props =>
-    props.action === 'edit'
-      ? `${colors.border.editButtonHover}`
-      : `${colors.border.deleteButtonHover}`};
+    props.action === 'edit' ? `${colors.border.editButtonHover}` : `${colors.border.deleteButtonHover}`};
   }
 `
 

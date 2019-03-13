@@ -1,12 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { Container, ErrorMsg } from './style'
+import * as S from './styles'
 
 const ErrorLog = ({ msg, show }) => (
-  <Container show={show}>
-    <ErrorMsg>{msg}</ErrorMsg>
-  </Container>
+  <S.Container show={show}>
+    <S.ErrorMsg>{msg}</S.ErrorMsg>
+  </S.Container>
 )
 
 ErrorLog.propTypes = {
