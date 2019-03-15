@@ -22,9 +22,13 @@ const TracksEdit = props => {
 
   const urlSanitized = sanitizeUrl(url)
 
+  async function asyncGetTrack () {
+    await getTrack(id)
+    validateTrack('edit')
+  }
+
   useEffect(() => {
-    getTrack(id)
-    validateTrack()
+    asyncGetTrack()
   }, [])
 
   return (

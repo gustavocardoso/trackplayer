@@ -1,5 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
+
 import { MdDelete, MdEdit } from 'react-icons/md'
 
 import * as S from './styles'
@@ -38,11 +40,11 @@ const Track = ({ id, title, artist, bpm, duration, volume, status }) => {
       <S.ActionButtonsGroup>
         <S.StatusBadge status={statusText}>{statusText}</S.StatusBadge>
 
-        <S.ActionButton title='Edit track' action='edit' status='active' as='button'>
+        <S.ActionButton as={Link} to={`/tracks/edit/${id}`} title='Edit track' action='edit'>
           <MdEdit size={13} />
         </S.ActionButton>
 
-        <S.ActionButton title='Delete track' action='delete' status='active' as='button'>
+        <S.ActionButton title='Delete track' action='delete' as='button'>
           <MdDelete size={13} />
         </S.ActionButton>
       </S.ActionButtonsGroup>

@@ -86,6 +86,7 @@ class Admin extends Component {
 
   clearTrack () {
     this.setState({
+      isReady: false,
       title: '',
       artist: '',
       bpm: '',
@@ -161,12 +162,20 @@ class Admin extends Component {
     }
   }
 
-  validateTrack () {
+  validateTrack (action) {
     const { title, artist, bpm, duration } = this.state
 
+    if (action === 'edit') {
+      this.setState({ isReady: true })
+    }
+
+    console.log(title !== '' && artist !== '' && bpm !== '' && duration !== '')
+
     if (title !== '' && artist !== '' && bpm !== '' && duration !== '') {
+      console.log('chamou')
       this.setState({ isReady: true })
     } else {
+      console.log('chamou 2')
       this.setState({ isReady: false })
     }
   }
