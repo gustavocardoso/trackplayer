@@ -191,10 +191,12 @@ class Admin extends Component {
                 />
               )}
             />
+
             <Route
               path={`${this.props.match.url}/new`}
               render={props => <TracksNew {...props} {...this.sharedProps()} action='new' />}
             />
+
             <Route
               path='/tracks/edit/:id'
               exact
