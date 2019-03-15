@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import * as S from './styles'
 
-import ErrorLog from '../../Error/Log'
+import ErrorLog from '../../Error'
 import Navigation from '../../Navigation'
 import TrackForm from '../Form/index'
 
@@ -22,9 +22,13 @@ const TracksEdit = props => {
 
   const urlSanitized = sanitizeUrl(url)
 
+  async function asyncGetTrack () {
+    await getTrack(id)
+    validateTrack('edit')
+  }
+
   useEffect(() => {
-    getTrack(id)
-    validateTrack()
+    asyncGetTrack()
   }, [])
 
   return (

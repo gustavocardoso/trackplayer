@@ -3,16 +3,15 @@ import PropTypes from 'prop-types'
 import { Switch, Route, withRouter } from 'react-router-dom'
 
 import GlobalStyle from './styles/global'
-import { Container, TopBar, Logo, Title } from './styles/base'
+import { Container } from './styles/base'
 
 import api from './services/api'
 
+import TopBar from './components/TopBar'
 import TracksList from './components/Tracks/List'
 import TracksNew from './components/Tracks/New'
 import TracksEdit from './components/Tracks/Edit'
 import Credits from './components/Credits'
-
-import LogoImage from '../images/icons/wave.svg'
 
 class Admin extends Component {
   constructor (props) {
@@ -87,6 +86,7 @@ class Admin extends Component {
 
   clearTrack () {
     this.setState({
+      isReady: false,
       title: '',
       artist: '',
       bpm: '',
@@ -162,12 +162,20 @@ class Admin extends Component {
     }
   }
 
-  validateTrack () {
+  validateTrack (action) {
     const { title, artist, bpm, duration } = this.state
 
+    if (action === 'edit') {
+      this.setState({ isReady: true })
+    }
+
+    console.log(title !== '' && artist !== '' && bpm !== '' && duration !== '')
+
     if (title !== '' && artist !== '' && bpm !== '' && duration !== '') {
+      console.log('chamou')
       this.setState({ isReady: true })
     } else {
+      console.log('chamou 2')
       this.setState({ isReady: false })
     }
   }
@@ -177,12 +185,7 @@ class Admin extends Component {
       <div>
         <GlobalStyle />
         <Container>
-          <TopBar>
-            <Logo icon={LogoImage} />
-            <Title>
-              Track<span>Player</span>
-            </Title>
-          </TopBar>
+          <TopBar />
 
           <Switch>
             <Route
@@ -197,10 +200,12 @@ class Admin extends Component {
                 />
               )}
             />
+
             <Route
               path={`${this.props.match.url}/new`}
               render={props => <TracksNew {...props} {...this.sharedProps()} action='new' />}
             />
+
             <Route
               path='/tracks/edit/:id'
               exact
@@ -216,7 +221,8 @@ class Admin extends Component {
 }
 
 Admin.propTypes = {
-  match: PropTypes.object.isRequired
+  match: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired
 }
 
 export default withRouter(Admin)

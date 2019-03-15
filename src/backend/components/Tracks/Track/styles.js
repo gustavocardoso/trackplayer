@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { darken } from 'polished'
 
 import { layout, colors } from '../../../styles/config'
 import { basicTrackContainer, basicButton, ovalButton } from '../../../styles/placeholders'
@@ -60,7 +61,7 @@ export const ActionButton = styled(basicButton)`
   margin-left: calc(${layout.margin.element});
   justify-self: flex-end;
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.1s ease-in-out;
 
   &:hover {
     color: ${colors.text.actionButtonHover};
@@ -68,6 +69,18 @@ export const ActionButton = styled(basicButton)`
     props.action === 'edit' ? `${colors.bg.editButtonHover}` : `${colors.bg.deleteButtonHover}`};
     border-color: ${props =>
     props.action === 'edit' ? `${colors.border.editButtonHover}` : `${colors.border.deleteButtonHover}`};
+  }
+
+  &:active {
+    color: ${colors.text.actionButtonHover};
+    background: ${props =>
+    props.action === 'edit'
+      ? `${darken(0.15, colors.bg.editButtonHover)}`
+      : `${darken(0.2, colors.bg.deleteButtonHover)}`};
+    border-color: ${props =>
+    props.action === 'edit'
+      ? `${darken(0.15, colors.border.editButtonHover)}`
+      : `${darken(0.2, colors.border.deleteButtonHover)}`};
   }
 `
 

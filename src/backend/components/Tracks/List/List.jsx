@@ -39,6 +39,7 @@ const TracksList = props => {
 
 TracksList.propTypes = {
   getTracks: PropTypes.func.isRequired,
+  clearTrack: PropTypes.func.isRequired,
   tracks: PropTypes.array,
   location: PropTypes.object.isRequired
 }
