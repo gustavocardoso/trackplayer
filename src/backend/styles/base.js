@@ -18,16 +18,8 @@ export const TopBar = styled.div`
   justify-content: flex-start;
   z-index: 101;
   background-color: ${colors.bg.topBar};
-  background-image: -webkit-linear-gradient(
-    left,
-    ${colors.bg.topBar},
-    ${colors.bg.topBarLight}
-  );
-  background-image: linear-gradient(
-    90deg,
-    ${colors.bg.topBar} 0,
-    ${colors.bg.topBarLight}
-  );
+  background-image: -webkit-linear-gradient(left, ${colors.bg.topBar}, ${colors.bg.topBarLight});
+  background-image: linear-gradient(90deg, ${colors.bg.topBar} 0, ${colors.bg.topBarLight});
   background-repeat: repeat-x;
   box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.2);
   padding: ${layout.padding.basic};
@@ -89,7 +81,7 @@ export const Navigation = styled(basicButton)`
   align-self: flex-end;
   text-align: right;
   text-decoration: none;
-  transition: all .3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 
   &.add-icon {
     color: ${colors.text.navigationAddButton};
@@ -130,29 +122,5 @@ export const IconContainer = styled.div`
   .action-icon {
     font-size: 2em;
     border-radius: 0.1875rem 0 0 0.1875rem;
-  }
-`
-
-export const Credits = styled.footer`
-  color: ${colors.text.credits};
-  margin: ${layout.margin.basic};
-  /* margin-top: -3rem; */
-  padding: ${layout.padding.element};
-  border-radius: 0.25rem;
-
-  @media screen and (${media.large}) {
-    margin: ${layout.margin.large};
-  }
-
-  @media screen and (${media.xLarge}) {
-    margin: ${layout.margin.xLarge};
-  }
-
-  a {
-    color: ${colors.text.creditsLinks};
-
-    &:hover {
-      color: ${colors.text.creditsLinksHover};
-    }
   }
 `

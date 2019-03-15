@@ -7,38 +7,48 @@ import ErrorLog from '../../Error/Log'
 import Navigation from '../../Navigation'
 import TrackForm from '../Form/index'
 
-const TracksNew = props => {
+const sanitizeUrl = url => url.replace(/\/[0-9]+.{0,}/, '')
+
+const TracksEdit = props => {
   const {
+    getTrack,
+    validateTrack,
     showError,
     errorMsg,
-    location: { pathname: url },
-    clearTrack
+    location: { pathname: url }
   } = props
 
+  const id = props.match.params.id
+
+  const urlSanitized = sanitizeUrl(url)
+
   useEffect(() => {
-    clearTrack()
+    getTrack(id)
+    validateTrack()
   }, [])
 
   return (
     <S.Container>
       <S.ContentHeading>
-        <S.Heading>New Track</S.Heading>
+        <S.Heading>Edit Track</S.Heading>
 
-        <Navigation url={url} />
+        <Navigation url={urlSanitized} />
       </S.ContentHeading>
 
       {!!showError && <ErrorLog msg={errorMsg} show={showError} />}
 
-      <TrackForm {...props} />
+      <TrackForm {...props} id={id} />
     </S.Container>
   )
 }
 
-TracksNew.propTypes = {
+TracksEdit.propTypes = {
+  getTrack: PropTypes.func.isRequired,
+  validateTrack: PropTypes.func.isRequired,
   location: PropTypes.object.isRequired,
   errorMsg: PropTypes.string,
   showError: PropTypes.bool.isRequired,
-  clearTrack: PropTypes.func.isRequired
+  match: PropTypes.object.isRequired
 }
 
-export default TracksNew
+export default TracksEdit
