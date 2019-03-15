@@ -3,13 +3,14 @@ import PropTypes from 'prop-types'
 import { Switch, Route, withRouter } from 'react-router-dom'
 
 import GlobalStyle from './styles/global'
-import { Container, TopBar, Logo, Title, Credits } from './styles/base'
+import { Container, TopBar, Logo, Title } from './styles/base'
 
 import api from './services/api'
 
 import TracksList from './components/Tracks/List'
 import TracksNew from './components/Tracks/New'
 import TracksEdit from './components/Tracks/Edit'
+import Credits from './components/Credits'
 
 import LogoImage from '../images/icons/wave.svg'
 
@@ -19,16 +20,13 @@ class Admin extends Component {
 
     this.state = {
       isReady: false,
-      track: {
-        title: '',
-        artist: '',
-        bpm: '',
-        duration: '',
-        volume: 0.5,
-        observations: '',
-        status: false,
-        createdAt: Date.now()
-      },
+      title: '',
+      artist: '',
+      bpm: '',
+      duration: '',
+      volume: 0.5,
+      observations: '',
+      status: false,
       tracks: [],
       errorMsg: '',
       showError: false
@@ -36,11 +34,11 @@ class Admin extends Component {
 
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
-    this.validateNewTrack = this.validateNewTrack.bind(this)
-  }
-
-  async componentDidMount () {
-    await this.getTracks()
+    this.validateTrack = this.validateTrack.bind(this)
+    this.getTracks = this.getTracks.bind(this)
+    this.getTrack = this.getTrack.bind(this)
+    this.clearTrack = this.clearTrack.bind(this)
+    this.sharedProps = this.sharedProps.bind(this)
   }
 
   async getTracks () {
@@ -48,6 +46,55 @@ class Admin extends Component {
     const tracks = response.data
 
     this.setState({ tracks })
+  }
+
+  async getTrack (id) {
+    const response = await api.get(`tracks/${id}`)
+    const track = response.data
+
+    const { title, artist, bpm, duration, volume, observations, status } = track
+
+    this.setState({
+      title,
+      artist,
+      bpm,
+      duration,
+      volume,
+      observations,
+      status
+    })
+  }
+
+  sharedProps () {
+    return {
+      isReady: this.state.isReady,
+      title: this.state.title,
+      artist: this.state.artist,
+      bpm: this.state.bpm,
+      duration: this.state.duration,
+      volume: this.state.volume,
+      observations: this.state.observations,
+      status: this.state.status,
+      handleChange: this.handleChange,
+      handleSubmit: this.handleSubmit,
+      validateTrack: this.validateTrack,
+      errorMsg: this.state.errorMsg,
+      showError: this.state.showError,
+      clearTrack: this.clearTrack,
+      getTrack: this.getTrack
+    }
+  }
+
+  clearTrack () {
+    this.setState({
+      title: '',
+      artist: '',
+      bpm: '',
+      duration: '',
+      volume: 0.5,
+      observations: '',
+      status: false
+    })
   }
 
   handleChange (event) {
@@ -59,17 +106,10 @@ class Admin extends Component {
       value = parseFloat(value)
     }
 
-    this.setState(prevState => {
-      return {
-        track: {
-          ...prevState.track,
-          [name]: value
-        }
-      }
-    })
+    this.setState({ [name]: value })
   }
 
-  async handleSubmit (event) {
+  async handleSubmit (event, id) {
     event.preventDefault()
 
     this.setState({
@@ -78,34 +118,52 @@ class Admin extends Component {
     })
 
     if (this.state.isReady) {
-      const { title, artist, bpm, duration, volume, observations, status, createdAt } = this.state.track
+      const { title, artist, bpm, duration, volume, observations, status } = this.state
 
-      try {
-        const response = await api.post('tracks', {
-          title,
-          artist,
-          bpm,
-          duration,
-          volume,
-          observations,
-          status,
-          createdAt
-        })
+      const track = {
+        title,
+        artist,
+        bpm,
+        duration,
+        volume,
+        observations,
+        status
+      }
 
-        if (response.statusText === 'Created') {
-          this.props.history.push('/tracks')
+      if (id === undefined) {
+        try {
+          const response = await api.post('tracks', track)
+
+          if (response.statusText === 'Created') {
+            this.props.history.push('/tracks')
+            await this.getTracks()
+          }
+        } catch (error) {
+          this.setState({
+            showError: true,
+            errorMsg: error.message
+          })
         }
-      } catch (error) {
-        this.setState({
-          showError: true,
-          errorMsg: error.message
-        })
+      } else {
+        try {
+          const response = await api.put(`tracks/${id}`, track)
+
+          if (response.statusText === 'OK') {
+            this.props.history.push('/tracks')
+            await this.getTracks()
+          }
+        } catch (error) {
+          this.setState({
+            showError: true,
+            errorMsg: error.message
+          })
+        }
       }
     }
   }
 
-  validateNewTrack () {
-    const { title, artist, bpm, duration } = this.state.track
+  validateTrack () {
+    const { title, artist, bpm, duration } = this.state
 
     if (title !== '' && artist !== '' && bpm !== '' && duration !== '') {
       this.setState({ isReady: true })
@@ -130,63 +188,28 @@ class Admin extends Component {
             <Route
               exact
               path={this.props.match.url}
-              render={props => <TracksList {...props} tracks={this.state.tracks} />}
-            />
-            <Route
-              path={`${this.props.match.url}/new`}
               render={props => (
-                <TracksNew
+                <TracksList
                   {...props}
-                  isReady={this.state.isReady}
-                  title={this.state.track.title}
-                  artist={this.state.track.artist}
-                  bpm={this.state.track.bpm}
-                  duration={this.state.track.duration}
-                  volume={this.state.track.volume}
-                  observations={this.state.track.observations}
-                  status={this.state.track.status}
-                  handleChange={this.handleChange}
-                  handleSubmit={this.handleSubmit}
-                  validateNewTrack={this.validateNewTrack}
-                  errorMsg={this.state.errorMsg}
-                  showError={this.state.showError}
+                  getTracks={this.getTracks}
+                  tracks={this.state.tracks}
+                  clearTrack={this.clearTrack}
                 />
               )}
             />
-            <Route path='/tracks/edit/:id' exact render={props => <TracksEdit {...props} />} />
+            <Route
+              path={`${this.props.match.url}/new`}
+              render={props => <TracksNew {...props} {...this.sharedProps()} action='new' />}
+            />
+            <Route
+              path='/tracks/edit/:id'
+              exact
+              render={props => <TracksEdit {...props} {...this.sharedProps()} action='edit' />}
+            />
           </Switch>
-        </Container>
 
-        <Credits>
-          <div>
-            <p>
-              Desenvolvido por <strong>Gustavo Cardoso</strong>
-            </p>
-            <p>
-              Icons made by{' '}
-              <a href='https://www.flaticon.com/authors/kiranshastry' title='Kiranshastry'>
-                Kiranshastry
-              </a>{' '}
-              and{' '}
-              <a href='https://www.freepik.com/' title='Freepik'>
-                Freepik
-              </a>{' '}
-              from{' '}
-              <a href='https://www.flaticon.com/' title='Flaticon'>
-                www.flaticon.com
-              </a>{' '}
-              is licensed by{' '}
-              <a
-                href='http://creativecommons.org/licenses/by/3.0/'
-                title='Creative Commons BY 3.0'
-                target='_blank'
-                rel='noopener noreferrer'
-              >
-                CC 3.0 BY
-              </a>
-            </p>
-          </div>
-        </Credits>
+          <Credits />
+        </Container>
       </div>
     )
   }

@@ -5,7 +5,7 @@ import { MdCancel, MdAddCircle } from 'react-icons/md'
 import * as S from './styles'
 
 const renderNavigation = url => {
-  if (url === '/tracks/new') {
+  if (url === '/tracks/new' || url === '/tracks/edit') {
     return (
       <S.Navigation as={Link} to='/tracks' title='Cancel and return to track list' className='cancel-icon'>
         <S.IconContainer>
