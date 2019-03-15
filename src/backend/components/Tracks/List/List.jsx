@@ -5,13 +5,17 @@ import * as S from './styles'
 
 import Track from '../Track'
 import Navigation from '../../Navigation'
+import ErrorLog from '../../Error'
 
 const TracksList = props => {
   const {
     getTracks,
     tracks,
     location: { pathname: url },
-    clearTrack
+    clearTrack,
+    showError,
+    errorMsg,
+    handleDelete
   } = props
 
   useEffect(() => {
@@ -26,11 +30,13 @@ const TracksList = props => {
         <Navigation url={url} />
       </S.ContentHeading>
 
+      {!!showError && <ErrorLog msg={errorMsg} show={showError} />}
+
       {!tracks.length && <S.LogMessage>There are no tracks here!</S.LogMessage>}
 
       <S.Tracks>
         {tracks.map(track => (
-          <Track {...track} key={track.id} />
+          <Track {...track} key={track.id} handleDelete={handleDelete} />
         ))}
       </S.Tracks>
     </S.Container>
@@ -40,6 +46,7 @@ const TracksList = props => {
 TracksList.propTypes = {
   getTracks: PropTypes.func.isRequired,
   clearTrack: PropTypes.func.isRequired,
+  handleDelete: PropTypes.func.isRequired,
   tracks: PropTypes.array,
   location: PropTypes.object.isRequired
 }
