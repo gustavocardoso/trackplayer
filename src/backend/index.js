@@ -38,6 +38,7 @@ class Admin extends Component {
     this.getTrack = this.getTrack.bind(this)
     this.clearTrack = this.clearTrack.bind(this)
     this.sharedProps = this.sharedProps.bind(this)
+    this.handleDelete = this.handleDelete.bind(this)
   }
 
   async getTracks () {
@@ -107,6 +108,33 @@ class Admin extends Component {
     }
 
     this.setState({ [name]: value })
+  }
+
+  async handleDelete (event, id, title) {
+    event.preventDefault()
+
+    this.setState({
+      showError: false,
+      errorMsg: ''
+    })
+
+    if (window.confirm(`Delete track ${title}?`)) {
+      try {
+        const response = await api.delete(`tracks/${id}`)
+
+        if (response.statusText === 'OK') {
+          this.props.history.push('/tracks')
+          await this.getTracks()
+        }
+      } catch (error) {
+        this.setState({
+          showError: true,
+          errorMsg: error.message
+        })
+      }
+    } else {
+      console.log('Cancel track deletion')
+    }
   }
 
   async handleSubmit (event, id) {
@@ -197,6 +225,9 @@ class Admin extends Component {
                   getTracks={this.getTracks}
                   tracks={this.state.tracks}
                   clearTrack={this.clearTrack}
+                  handleDelete={this.handleDelete}
+                  errorMsg={this.state.errorMsg}
+                  showError={this.state.showError}
                 />
               )}
             />

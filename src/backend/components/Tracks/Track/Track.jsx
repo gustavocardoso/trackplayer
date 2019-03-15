@@ -8,7 +8,7 @@ import * as S from './styles'
 
 import AlbumImage from '../../../../images/icons/music-album.svg'
 
-const Track = ({ id, title, artist, bpm, duration, volume, status }) => {
+const Track = ({ id, title, artist, bpm, duration, volume, status, handleDelete }) => {
   const statusText = status ? 'active' : 'inactive'
 
   return (
@@ -44,7 +44,12 @@ const Track = ({ id, title, artist, bpm, duration, volume, status }) => {
           <MdEdit size={13} />
         </S.ActionButton>
 
-        <S.ActionButton title='Delete track' action='delete' as='button'>
+        <S.ActionButton
+          title='Delete track'
+          action='delete'
+          as='button'
+          onClick={event => handleDelete(event, id, title)}
+        >
           <MdDelete size={13} />
         </S.ActionButton>
       </S.ActionButtonsGroup>
@@ -59,7 +64,8 @@ Track.propTypes = {
   bpm: PropTypes.string.isRequired,
   duration: PropTypes.string.isRequired,
   volume: PropTypes.number.isRequired,
-  status: PropTypes.bool.isRequired
+  status: PropTypes.bool.isRequired,
+  handleDelete: PropTypes.func.isRequired
 }
 
 Track.defaultProps = {
