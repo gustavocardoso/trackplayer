@@ -3,16 +3,15 @@ import PropTypes from 'prop-types'
 import { Switch, Route, withRouter } from 'react-router-dom'
 
 import GlobalStyle from './styles/global'
-import { Container, TopBar, Logo, Title } from './styles/base'
+import { Container } from './styles/base'
 
 import api from './services/api'
 
+import TopBar from './components/TopBar'
 import TracksList from './components/Tracks/List'
 import TracksNew from './components/Tracks/New'
 import TracksEdit from './components/Tracks/Edit'
 import Credits from './components/Credits'
-
-import LogoImage from '../images/icons/wave.svg'
 
 class Admin extends Component {
   constructor (props) {
@@ -177,12 +176,7 @@ class Admin extends Component {
       <div>
         <GlobalStyle />
         <Container>
-          <TopBar>
-            <Logo icon={LogoImage} />
-            <Title>
-              Track<span>Player</span>
-            </Title>
-          </TopBar>
+          <TopBar />
 
           <Switch>
             <Route
@@ -216,7 +210,8 @@ class Admin extends Component {
 }
 
 Admin.propTypes = {
-  match: PropTypes.object.isRequired
+  match: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired
 }
 
 export default withRouter(Admin)
