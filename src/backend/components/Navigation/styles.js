@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { darken, lighten } from 'polished'
+import { darken } from 'polished'
 
 import { colors } from '../../styles/config'
 import { basicButton } from '../../styles/placeholders'
