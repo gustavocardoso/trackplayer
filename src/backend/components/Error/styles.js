@@ -8,7 +8,7 @@ export const Container = styled.div`
   ${props =>
     props.show &&
     css`
-      animation: ${show} 0.5s linear;
+      animation: ${show} 0.3s linear;
     `}
 `
 

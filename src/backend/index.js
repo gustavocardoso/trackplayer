@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Switch, Route, withRouter } from 'react-router-dom'
+import filesize from 'filesize'
 
 import GlobalStyle from './styles/global'
 import { Container } from './styles/base'
 
-import api from './services/api'
+import { api, fileApi } from './services/api'
 
 import TopBar from './components/TopBar'
 import TracksList from './components/Tracks/List'
@@ -25,10 +26,16 @@ class Admin extends Component {
       duration: '',
       volume: 0.5,
       observations: '',
+      filename: '',
       status: false,
       tracks: [],
       errorMsg: '',
-      showError: false
+      showError: false,
+      uploadProgress: 0,
+      uploading: false,
+      uploadError: false,
+      uploaded: false,
+      uploadErrorMessage: ''
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -52,7 +59,7 @@ class Admin extends Component {
     const response = await api.get(`tracks/${id}`)
     const track = response.data
 
-    const { title, artist, bpm, duration, volume, observations, status } = track
+    const { title, artist, bpm, duration, volume, filename, observations, status } = track
 
     this.setState({
       title,
@@ -60,6 +67,7 @@ class Admin extends Component {
       bpm,
       duration,
       volume,
+      filename,
       observations,
       status
     })
@@ -73,6 +81,7 @@ class Admin extends Component {
       bpm: this.state.bpm,
       duration: this.state.duration,
       volume: this.state.volume,
+      filename: this.state.filename,
       observations: this.state.observations,
       status: this.state.status,
       handleChange: this.handleChange,
@@ -81,7 +90,12 @@ class Admin extends Component {
       errorMsg: this.state.errorMsg,
       showError: this.state.showError,
       clearTrack: this.clearTrack,
-      getTrack: this.getTrack
+      getTrack: this.getTrack,
+      uploadProgress: this.state.uploadProgress,
+      uploading: this.state.uploading,
+      uploadError: this.state.uploadError,
+      uploaded: this.state.uploaded,
+      uploadErrorMessage: this.state.uploadErrorMessage
     }
   }
 
@@ -93,8 +107,15 @@ class Admin extends Component {
       bpm: '',
       duration: '',
       volume: 0.5,
+      filename: '',
       observations: '',
-      status: false
+      status: false,
+      uploadProgress: 0,
+      uploading: false,
+      uploadError: false,
+      uploaded: false,
+      errorMsg: '',
+      showError: false
     })
   }
 
@@ -107,7 +128,80 @@ class Admin extends Component {
       value = parseFloat(value)
     }
 
+    if (name === 'trackfile') {
+      const file = target.files[0]
+      const fileData = {
+        file,
+        name: file.name,
+        readableSize: filesize(file.size),
+        error: false
+      }
+
+      this.setState({ uploading: true, uploadProgress: 0 })
+
+      this.processUpload(fileData)
+    }
+
     this.setState({ [name]: value })
+  }
+
+  processUpload (fileData) {
+    this.setState({ uploadError: false, errorMsg: '', showError: false })
+
+    window.setTimeout(() => {
+      const { file, name } = fileData
+      const data = new FormData()
+
+      data.append('file', file, name)
+
+      fileApi
+        .post('files/upload', data, {
+          onUploadProgress: event => {
+            const progress = parseInt(Math.round((event.loaded * 100) / event.total))
+
+            this.setState({ uploadProgress: progress })
+
+            if (progress === 100) {
+              this.setState({ uploading: false })
+            }
+          }
+        })
+        .then(response => {
+          const { error, message } = response.data
+
+          console.log(response.data)
+
+          if (error) {
+            this.setState({
+              filename: '',
+              uploadError: true,
+              uploading: false,
+              uploaded: false,
+              uploadErrorMessage: message
+            })
+          } else {
+            const { filename } = response.data
+
+            this.setState({
+              uploaded: true,
+              filename,
+              uploadError: false,
+              uploading: false
+            })
+          }
+        })
+        .catch(err => {
+          if (err) {
+            this.setState({
+              errorMsg: err.message,
+              showError: true,
+              uploadError: true,
+              uploading: false,
+              uploaded: false
+            })
+          }
+        })
+    }, 700)
   }
 
   async handleDelete (event, id, title) {
@@ -154,6 +248,7 @@ class Admin extends Component {
         bpm,
         duration,
         volume,
+        filename: this.state.filename,
         observations,
         status
       }
@@ -197,13 +292,9 @@ class Admin extends Component {
       this.setState({ isReady: true })
     }
 
-    console.log(title !== '' && artist !== '' && bpm !== '' && duration !== '')
-
     if (title !== '' && artist !== '' && bpm !== '' && duration !== '') {
-      console.log('chamou')
       this.setState({ isReady: true })
     } else {
-      console.log('chamou 2')
       this.setState({ isReady: false })
     }
   }
@@ -234,13 +325,17 @@ class Admin extends Component {
 
             <Route
               path={`${this.props.match.url}/new`}
-              render={props => <TracksNew {...props} {...this.sharedProps()} action='new' />}
+              render={props => (
+                <TracksNew {...props} {...this.sharedProps()} action='new' />
+              )}
             />
 
             <Route
               path='/tracks/edit/:id'
               exact
-              render={props => <TracksEdit {...props} {...this.sharedProps()} action='edit' />}
+              render={props => (
+                <TracksEdit {...props} {...this.sharedProps()} action='edit' />
+              )}
             />
           </Switch>
 

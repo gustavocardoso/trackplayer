@@ -4,6 +4,8 @@ import { MdCheckBox } from 'react-icons/md'
 
 import * as S from './styles'
 
+import UploadDisplay from '../../Upload/Display'
+
 const TrackForm = props => {
   const {
     action,
@@ -16,9 +18,14 @@ const TrackForm = props => {
     bpm,
     duration,
     volume,
+    filename,
     observations,
     status,
-    id
+    id,
+    uploadProgress,
+    uploading,
+    uploadError,
+    uploadErrorMessage
   } = props
 
   return (
@@ -144,9 +151,34 @@ const TrackForm = props => {
         />
       </S.FormGroup>
 
+      <S.FormGroup>
+        <S.FormLabel>File</S.FormLabel>
+        <S.FormInput
+          name='trackfile'
+          id='trackfile'
+          type='file'
+          className='flexible-input'
+          disabled={uploading}
+          onChange={handleChange}
+        />
+      </S.FormGroup>
+
+      <UploadDisplay
+        filename={filename}
+        uploadProgress={uploadProgress}
+        uploadError={uploadError}
+        uploadErrorMessage={uploadErrorMessage}
+      />
+
       <S.FormGroup className='no-label'>
         <S.FormLabel className='check-label'>
-          <S.Status type='checkbox' name='status' id='track-status' checked={status} onChange={handleChange} />
+          <S.Status
+            type='checkbox'
+            name='status'
+            id='track-status'
+            checked={status}
+            onChange={handleChange}
+          />
           <S.CheckBoxIconContainer className='icon-container'>
             <MdCheckBox size={26} className='check-icon' onChange={handleChange} />
           </S.CheckBoxIconContainer>
@@ -155,7 +187,11 @@ const TrackForm = props => {
       </S.FormGroup>
 
       <S.FormGroup className='no-label'>
-        <S.InsertButton as='button' disabled={!isReady} onClick={event => handleSubmit(event, id)}>
+        <S.InsertButton
+          as='button'
+          disabled={!isReady || uploading}
+          onClick={event => handleSubmit(event, id)}
+        >
           {action === 'new' ? 'New' : 'Edit'} track
         </S.InsertButton>
       </S.FormGroup>
@@ -176,7 +212,12 @@ TrackForm.propTypes = {
   volume: PropTypes.number,
   observations: PropTypes.string,
   status: PropTypes.bool.isRequired,
-  id: PropTypes.string
+  id: PropTypes.string,
+  uploadProgress: PropTypes.number.isRequired,
+  uploading: PropTypes.bool.isRequired,
+  uploadError: PropTypes.bool.isRequired,
+  filename: PropTypes.string.isRequired,
+  uploadErrorMessage: PropTypes.string.isRequired
 }
 
 export default TrackForm
